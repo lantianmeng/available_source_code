@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package service;
+
+service MT4Callback {
+  rpc Activation (ActivationReq) returns (NullResp) {}
+}
+
+message NullResp {
+}
+
+message ActivationReq {
+  string symbol = 1;
+  int32 activation = 2;
+  int32 cmd = 3;
+  int32 mt4_id = 4;
+  int32 volume = 5;
+  int32 ticket = 6;
+  int64 open_time = 7;
+  int64 close_time = 8;
+  double open_price = 9;
+  double close_price = 10;
+  double profit = 11;
+  double sl = 12;
+  double tp= 13;
+  int64 expiration = 14;
+  int64 time_stamp = 15;
+  int32 action_type = 16;
+}

@@ -1,0 +1,33 @@
+//定义proto版本
+syntax = "proto3";
+
+//定义生成的包名
+package service;
+
+//定义服务实例名
+service Service {
+    //定义一个用于RPC的函数叫Sum，入参类型是SumReq，出参类型是SumResp
+    rpc Sum (SumReq) returns (SumResp) {}
+    //定义一个用于RPC的函数叫Stream，入参类型是流式StreamReq，出参类型是流式StreamResp
+    rpc Stream(stream StreamReq) returns (stream StreamResp) {}
+}
+
+//定义Sum函数的入参结构体
+message SumReq {
+    int32 a = 1;    //定义一个int32参数，名字叫a
+    int32 b = 2;    //定义一个int32参数，名字叫b
+}
+
+//定义Sum函数的出参结构体
+message SumResp {
+    int32 result = 1;    //定义一个int32参数，名字叫result
+}
+
+//定义Stream函数的入参结构体
+message StreamReq {
+    string msg = 1;    //定义一个string参数，名字叫msg
+}
+//定义Steam函数的出参结构体
+message StreamResp {
+    string msg = 1;     //定义一个string参数，名字叫msg
+}

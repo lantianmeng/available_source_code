@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3A56DF92-A92E-3B23-B8F0-5D8B6786A932}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Tool\boost_1_63_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Tool\boost_1_63_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Tool\boost_1_63_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Tool\boost_1_63_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+E:\Tool\cmake\bin\cmake.exe -HE:/Alan.Yan/ConsoleApplication1/learn_boost -BE:/Alan.Yan/ConsoleApplication1/learn_boost --check-stamp-file E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeLists.txt;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeLists.txt;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeSystem.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeCCompiler.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeCXXCompiler.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeRCCompiler.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+E:\Tool\cmake\bin\cmake.exe -HE:/Alan.Yan/ConsoleApplication1/learn_boost -BE:/Alan.Yan/ConsoleApplication1/learn_boost --check-stamp-file E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeLists.txt;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeLists.txt;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeSystem.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeCCompiler.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeCXXCompiler.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeRCCompiler.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+E:\Tool\cmake\bin\cmake.exe -HE:/Alan.Yan/ConsoleApplication1/learn_boost -BE:/Alan.Yan/ConsoleApplication1/learn_boost --check-stamp-file E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeLists.txt;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeLists.txt;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeSystem.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeCCompiler.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeCXXCompiler.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeRCCompiler.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+E:\Tool\cmake\bin\cmake.exe -HE:/Alan.Yan/ConsoleApplication1/learn_boost -BE:/Alan.Yan/ConsoleApplication1/learn_boost --check-stamp-file E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:/Alan.Yan/ConsoleApplication1/learn_boost/CMakeLists.txt;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeLists.txt;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeSystem.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeCCompiler.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeCXXCompiler.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\3.11.0\CMakeRCCompiler.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;E:\Tool\cmake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\Alan.Yan\ConsoleApplication1\learn_boost\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\Alan.Yan\ConsoleApplication1\learn_boost\ZERO_CHECK.vcxproj">
+      <Project>{05F19FDD-E6E5-3A5B-865D-A470AF5C9D2C}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\Alan.Yan\ConsoleApplication1\learn_boost\learn_boost.vcxproj">
+      <Project>{CBD1EA97-3E60-3865-B0C0-AC79804C55CA}</Project>
+      <Name>learn_boost</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
