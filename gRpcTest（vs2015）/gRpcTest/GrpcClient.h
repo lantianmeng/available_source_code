@@ -11,6 +11,7 @@
 #else
 //#include "helloworld.grpc.pb.h"
 #include "activation.grpc.pb.h"
+#include "trade.grpc.pb.h"
 #endif
 
 using grpc::Channel;
@@ -58,4 +59,44 @@ public:
 
 private:
 	std::unique_ptr<MT4Callback::Stub> stub_;
+};
+
+class TradeClient {
+public:
+	TradeClient(std::shared_ptr<Channel> channel)
+		: stub_(::mt4api::Trade::NewStub(channel)) {}
+
+	// Assembles the client's payload, sends it and presents the response back
+	// from the server.
+	bool OpenOrder(const ::mt4api::TradeOpenReq& request, ::mt4api::TradeOpenResp* response) {
+		// Data we are sending to the server.
+		//ActivationReq request(data);
+		//request.set_name(user);
+
+		// Container for the data we expect from the server.
+		//NullResp reply;
+
+		// Context for the client. It could be used to convey extra information to
+		// the server and/or tweak certain RPC behaviors.
+		//ClientContext context; // as class data member
+
+		// The actual RPC.
+		Status status = stub_->Open(&context, request, response);
+
+		// Act upon its status.
+		if (status.ok()) {
+			return true;
+		}
+		else {
+			std::cout << status.error_code() << ": " << status.error_message()
+				<< std::endl;
+			return false;
+		}
+	}
+
+private:
+	std::unique_ptr<::mt4api::Trade::Stub> stub_;
+	// Context for the client. It could be used to convey extra information to
+	// the server and/or tweak certain RPC behaviors.
+	ClientContext context;
 };

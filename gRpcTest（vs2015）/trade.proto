@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package mt4api;
+
+option cc_enable_arenas = true;
+
+//交易
+service Trade {
+    //开仓
+    rpc Open (TradeOpenReq) returns (TradeOpenResp) {}
+    //平仓
+    rpc Close (TradeCloseReq) returns (TradeCloseResp) {}
+    //更新订单
+    rpc Update (TradeUpdateReq) returns (TradeUpdateResp) {}
+}
+
+//开仓请求
+message TradeOpenReq {
+    string Symbol = 1;
+    int32 MT4ID = 2;
+    int32 CMD = 3;
+    int32 Volume = 4;
+    double OpenPrice = 5;
+    double SL = 6;
+    double TP = 7;
+}
+
+//开仓响应
+message TradeOpenResp {
+    int32 Code = 1;
+    TradeOpenData Data = 2;
+}
+
+//开仓响应的data字段数据
+message TradeOpenData {
+    string Symbol = 1;
+    int32 MT4ID = 2;
+    int32 CMD = 3;
+	int32 Volume = 4;
+	int32 Ticket = 5;
+	int64 OpenTime = 6;
+    double OpenPrice = 7;
+    double SL = 8;
+    double TP = 9;
+}
+
+//平仓请求
+message TradeCloseReq {
+    string Symbol = 1;
+    int32 MT4ID = 2;
+    int32 CMD = 3;
+	int32 Volume = 4;
+    int32 Ticket = 5;    
+}
+
+//平仓响应
+message TradeCloseResp {
+    int32 Code = 1;
+    TradeCloseData Data = 2;
+}
+
+//平仓响应的data字段数据
+message TradeCloseData {
+    string Symbol = 1;
+    int32 MT4ID = 2;
+    int32 CMD = 3;
+	int32 Volume = 4;
+	int32 Ticket = 5;
+    int64 CloseTime = 6;
+	int64 OpenTime = 7;
+	double ClosePrice = 8;
+    double OpenPrice = 9;
+    double SL = 10;
+    double TP = 11;  
+    double Profit = 12;	
+}
+
+//修改订单请求
+message TradeUpdateReq {
+    string Symbol = 1;
+    int32 MT4ID = 2;
+    int32 CMD = 3;
+    int32 Volume = 4;
+	int32 Ticket = 5;
+	double OpenPrice = 6;
+    double SL = 7;
+    double TP = 8;   
+}
+
+//修改订单响应
+message TradeUpdateResp {
+    int32 Code = 1;
+    TradeUpdateData Data = 2;
+}
+
+//修改订单响应的data字段数据
+message TradeUpdateData {
+    double SL = 1;
+    double TP = 2;
+}

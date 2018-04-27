@@ -114,6 +114,33 @@ int main(int argc, char** argv) {
 
 	greeter.Activation(req);
 
+	TradeClient trade_client(grpc::CreateChannel(
+		"localhost:50051", grpc::InsecureChannelCredentials()));
+
+	::mt4api::TradeOpenReq trade_open_req;
+	trade_open_req.set_symbol("EURUSD");
+	trade_open_req.set_cmd(0);
+	trade_open_req.set_mt4id(3800);
+	trade_open_req.set_volume(5.00);
+	trade_open_req.set_openprice(1.23241);
+	trade_open_req.set_sl(0.00);
+	trade_open_req.set_tp(0.00);
+
+	::mt4api::TradeOpenResp trade_open_resp;
+	trade_client.OpenOrder(trade_open_req, &trade_open_resp);
+	std::cout << "TradeOpenResp:\n";
+	std::cout << "symbol:" << trade_open_resp.data().symbol() << " "
+		<< "cmd:" << trade_open_resp.data().cmd() << " "
+		<< "mt4_id:" << trade_open_resp.data().mt4id() << " "
+		<< "volume:" << trade_open_resp.data().volume() << " "
+		<< "ticket:" << trade_open_resp.data().ticket() << " "
+		<< "open_time:" << trade_open_resp.data().opentime() << " "
+		<< "close_price:" << trade_open_resp.data().openprice() << " "
+		<< "sl:" << trade_open_resp.data().sl() << " "
+		<< "tp:" << trade_open_resp.data().tp() << " "
+		<< "code:" << trade_open_resp.code() << " "
+		//<< "action_type:" << request->action_type() << " "
+		<< std::endl;
 	gpr_set_log_verbosity(GPR_LOG_SEVERITY_DEBUG);
 	gpr_log(GPR_DEBUG, "format string %d", 3);
 	gpr_log(GPR_INFO, "hello world");
