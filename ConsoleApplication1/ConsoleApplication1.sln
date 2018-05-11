@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "learn_boost", "learn_boost\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "learn_c++11", "learn_c++11\learn_c++11.vcxproj", "{976841FB-A575-4D93-8C77-1625327DAF4B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcxproj", "{1C34CE32-B7A5-4777-BB9F-11324B66731F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -29,6 +31,14 @@ Global
 		{976841FB-A575-4D93-8C77-1625327DAF4B}.Release|Win32.Build.0 = Release|Win32
 		{976841FB-A575-4D93-8C77-1625327DAF4B}.Release|x64.ActiveCfg = Release|x64
 		{976841FB-A575-4D93-8C77-1625327DAF4B}.Release|x64.Build.0 = Release|x64
+		{1C34CE32-B7A5-4777-BB9F-11324B66731F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1C34CE32-B7A5-4777-BB9F-11324B66731F}.Debug|Win32.Build.0 = Debug|Win32
+		{1C34CE32-B7A5-4777-BB9F-11324B66731F}.Debug|x64.ActiveCfg = Debug|x64
+		{1C34CE32-B7A5-4777-BB9F-11324B66731F}.Debug|x64.Build.0 = Debug|x64
+		{1C34CE32-B7A5-4777-BB9F-11324B66731F}.Release|Win32.ActiveCfg = Release|Win32
+		{1C34CE32-B7A5-4777-BB9F-11324B66731F}.Release|Win32.Build.0 = Release|Win32
+		{1C34CE32-B7A5-4777-BB9F-11324B66731F}.Release|x64.ActiveCfg = Release|x64
+		{1C34CE32-B7A5-4777-BB9F-11324B66731F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

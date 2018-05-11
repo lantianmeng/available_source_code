@@ -230,7 +230,10 @@ int main()
 	Base *pb = NULL;
 	pb->fun();
 
-	system("pause");
+	while (!g_bExit) 
+	{ 
+		Sleep(500); 
+	}
 	return 0;
 }
 
