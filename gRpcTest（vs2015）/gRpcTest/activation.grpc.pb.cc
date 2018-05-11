@@ -17,6 +17,7 @@ namespace service {
 
 static const char* MT4Callback_method_names[] = {
   "/service.MT4Callback/Activation",
+  "/service.MT4Callback/Price",
 };
 
 std::unique_ptr< MT4Callback::Stub> MT4Callback::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -26,36 +27,59 @@ std::unique_ptr< MT4Callback::Stub> MT4Callback::NewStub(const std::shared_ptr< 
 }
 
 MT4Callback::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_Activation_(MT4Callback_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Activation_(MT4Callback_method_names[0], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_Price_(MT4Callback_method_names[1], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   {}
 
-::grpc::Status MT4Callback::Stub::Activation(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::service::NullResp* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Activation_, context, request, response);
+::grpc::ClientReaderWriter< ::service::ActivationReq, ::service::NullResp>* MT4Callback::Stub::ActivationRaw(::grpc::ClientContext* context) {
+  return ::grpc::internal::ClientReaderWriterFactory< ::service::ActivationReq, ::service::NullResp>::Create(channel_.get(), rpcmethod_Activation_, context);
 }
 
-::grpc::ClientAsyncResponseReader< ::service::NullResp>* MT4Callback::Stub::AsyncActivationRaw(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::service::NullResp>::Create(channel_.get(), cq, rpcmethod_Activation_, context, request, true);
+::grpc::ClientAsyncReaderWriter< ::service::ActivationReq, ::service::NullResp>* MT4Callback::Stub::AsyncActivationRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::service::ActivationReq, ::service::NullResp>::Create(channel_.get(), cq, rpcmethod_Activation_, context, true, tag);
 }
 
-::grpc::ClientAsyncResponseReader< ::service::NullResp>* MT4Callback::Stub::PrepareAsyncActivationRaw(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::service::NullResp>::Create(channel_.get(), cq, rpcmethod_Activation_, context, request, false);
+::grpc::ClientAsyncReaderWriter< ::service::ActivationReq, ::service::NullResp>* MT4Callback::Stub::PrepareAsyncActivationRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::service::ActivationReq, ::service::NullResp>::Create(channel_.get(), cq, rpcmethod_Activation_, context, false, nullptr);
+}
+
+::grpc::ClientReaderWriter< ::service::PriceReq, ::service::NullResp>* MT4Callback::Stub::PriceRaw(::grpc::ClientContext* context) {
+  return ::grpc::internal::ClientReaderWriterFactory< ::service::PriceReq, ::service::NullResp>::Create(channel_.get(), rpcmethod_Price_, context);
+}
+
+::grpc::ClientAsyncReaderWriter< ::service::PriceReq, ::service::NullResp>* MT4Callback::Stub::AsyncPriceRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::service::PriceReq, ::service::NullResp>::Create(channel_.get(), cq, rpcmethod_Price_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::service::PriceReq, ::service::NullResp>* MT4Callback::Stub::PrepareAsyncPriceRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::service::PriceReq, ::service::NullResp>::Create(channel_.get(), cq, rpcmethod_Price_, context, false, nullptr);
 }
 
 MT4Callback::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MT4Callback_method_names[0],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MT4Callback::Service, ::service::ActivationReq, ::service::NullResp>(
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< MT4Callback::Service, ::service::ActivationReq, ::service::NullResp>(
           std::mem_fn(&MT4Callback::Service::Activation), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MT4Callback_method_names[1],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< MT4Callback::Service, ::service::PriceReq, ::service::NullResp>(
+          std::mem_fn(&MT4Callback::Service::Price), this)));
 }
 
 MT4Callback::Service::~Service() {
 }
 
-::grpc::Status MT4Callback::Service::Activation(::grpc::ServerContext* context, const ::service::ActivationReq* request, ::service::NullResp* response) {
+::grpc::Status MT4Callback::Service::Activation(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::service::NullResp, ::service::ActivationReq>* stream) {
   (void) context;
-  (void) request;
-  (void) response;
+  (void) stream;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MT4Callback::Service::Price(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::service::NullResp, ::service::PriceReq>* stream) {
+  (void) context;
+  (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

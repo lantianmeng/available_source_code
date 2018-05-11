@@ -15,6 +15,13 @@
 #include "tips.h"
 #include "threadpool.h"
 
+class Margin final {
+public:
+	static constexpr char const* service_full_name() {
+		return "mt4api.Margin";
+	}
+};
+
 class A
 {
 public:

@@ -28,21 +28,21 @@ std::unique_ptr< Trade::Stub> Trade::NewStub(const std::shared_ptr< ::grpc::Chan
 }
 
 Trade::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_Open_(Trade_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Open_(Trade_method_names[0], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   , rpcmethod_Close_(Trade_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Update_(Trade_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Trade::Stub::Open(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::mt4api::TradeOpenResp* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Open_, context, request, response);
+::grpc::ClientReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>* Trade::Stub::OpenRaw(::grpc::ClientContext* context) {
+  return ::grpc::internal::ClientReaderWriterFactory< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>::Create(channel_.get(), rpcmethod_Open_, context);
 }
 
-::grpc::ClientAsyncResponseReader< ::mt4api::TradeOpenResp>* Trade::Stub::AsyncOpenRaw(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::mt4api::TradeOpenResp>::Create(channel_.get(), cq, rpcmethod_Open_, context, request, true);
+::grpc::ClientAsyncReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>* Trade::Stub::AsyncOpenRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>::Create(channel_.get(), cq, rpcmethod_Open_, context, true, tag);
 }
 
-::grpc::ClientAsyncResponseReader< ::mt4api::TradeOpenResp>* Trade::Stub::PrepareAsyncOpenRaw(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::mt4api::TradeOpenResp>::Create(channel_.get(), cq, rpcmethod_Open_, context, request, false);
+::grpc::ClientAsyncReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>* Trade::Stub::PrepareAsyncOpenRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>::Create(channel_.get(), cq, rpcmethod_Open_, context, false, nullptr);
 }
 
 ::grpc::Status Trade::Stub::Close(::grpc::ClientContext* context, const ::mt4api::TradeCloseReq& request, ::mt4api::TradeCloseResp* response) {
@@ -72,8 +72,8 @@ Trade::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
 Trade::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Trade_method_names[0],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Trade::Service, ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>(
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< Trade::Service, ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>(
           std::mem_fn(&Trade::Service::Open), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Trade_method_names[1],
@@ -90,10 +90,9 @@ Trade::Service::Service() {
 Trade::Service::~Service() {
 }
 
-::grpc::Status Trade::Service::Open(::grpc::ServerContext* context, const ::mt4api::TradeOpenReq* request, ::mt4api::TradeOpenResp* response) {
+::grpc::Status Trade::Service::Open(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::mt4api::TradeOpenResp, ::mt4api::TradeOpenReq>* stream) {
   (void) context;
-  (void) request;
-  (void) response;
+  (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

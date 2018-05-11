@@ -26,6 +26,7 @@ class ServerContext;
 namespace mt4api {
 
 // 交易
+
 class Trade final {
  public:
   static constexpr char const* service_full_name() {
@@ -36,12 +37,14 @@ class Trade final {
     virtual ~StubInterface() {}
     // 开仓
 
-    virtual ::grpc::Status Open(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::mt4api::TradeOpenResp* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeOpenResp>> AsyncOpen(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeOpenResp>>(AsyncOpenRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>> Open(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>>(OpenRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeOpenResp>> PrepareAsyncOpen(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeOpenResp>>(PrepareAsyncOpenRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>> AsyncOpen(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>>(AsyncOpenRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>> PrepareAsyncOpen(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>>(PrepareAsyncOpenRaw(context, cq));
     }
     // 平仓
     virtual ::grpc::Status Close(::grpc::ClientContext* context, const ::mt4api::TradeCloseReq& request, ::mt4api::TradeCloseResp* response) = 0;
@@ -60,8 +63,9 @@ class Trade final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeUpdateResp>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeOpenResp>* AsyncOpenRaw(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeOpenResp>* PrepareAsyncOpenRaw(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>* OpenRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>* AsyncOpenRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>* PrepareAsyncOpenRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeCloseResp>* AsyncCloseRaw(::grpc::ClientContext* context, const ::mt4api::TradeCloseReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeCloseResp>* PrepareAsyncCloseRaw(::grpc::ClientContext* context, const ::mt4api::TradeCloseReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mt4api::TradeUpdateResp>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::mt4api::TradeUpdateReq& request, ::grpc::CompletionQueue* cq) = 0;
@@ -70,12 +74,14 @@ class Trade final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status Open(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::mt4api::TradeOpenResp* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mt4api::TradeOpenResp>> AsyncOpen(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mt4api::TradeOpenResp>>(AsyncOpenRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>> Open(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>>(OpenRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mt4api::TradeOpenResp>> PrepareAsyncOpen(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mt4api::TradeOpenResp>>(PrepareAsyncOpenRaw(context, request, cq));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>> AsyncOpen(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>>(AsyncOpenRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>> PrepareAsyncOpen(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>>(PrepareAsyncOpenRaw(context, cq));
     }
     ::grpc::Status Close(::grpc::ClientContext* context, const ::mt4api::TradeCloseReq& request, ::mt4api::TradeCloseResp* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mt4api::TradeCloseResp>> AsyncClose(::grpc::ClientContext* context, const ::mt4api::TradeCloseReq& request, ::grpc::CompletionQueue* cq) {
@@ -94,8 +100,9 @@ class Trade final {
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    ::grpc::ClientAsyncResponseReader< ::mt4api::TradeOpenResp>* AsyncOpenRaw(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::mt4api::TradeOpenResp>* PrepareAsyncOpenRaw(::grpc::ClientContext* context, const ::mt4api::TradeOpenReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>* OpenRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>* AsyncOpenRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>* PrepareAsyncOpenRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mt4api::TradeCloseResp>* AsyncCloseRaw(::grpc::ClientContext* context, const ::mt4api::TradeCloseReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mt4api::TradeCloseResp>* PrepareAsyncCloseRaw(::grpc::ClientContext* context, const ::mt4api::TradeCloseReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mt4api::TradeUpdateResp>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::mt4api::TradeUpdateReq& request, ::grpc::CompletionQueue* cq) override;
@@ -112,7 +119,7 @@ class Trade final {
     virtual ~Service();
     // 开仓
 
-    virtual ::grpc::Status Open(::grpc::ServerContext* context, const ::mt4api::TradeOpenReq* request, ::mt4api::TradeOpenResp* response);
+    virtual ::grpc::Status Open(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::mt4api::TradeOpenResp, ::mt4api::TradeOpenReq>* stream);
     // 平仓
     virtual ::grpc::Status Close(::grpc::ServerContext* context, const ::mt4api::TradeCloseReq* request, ::mt4api::TradeCloseResp* response);
     // 更新订单
@@ -130,12 +137,12 @@ class Trade final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Open(::grpc::ServerContext* context, const ::mt4api::TradeOpenReq* request, ::mt4api::TradeOpenResp* response) final override {
+    ::grpc::Status Open(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::mt4api::TradeOpenResp, ::mt4api::TradeOpenReq>* stream) final override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestOpen(::grpc::ServerContext* context, ::mt4api::TradeOpenReq* request, ::grpc::ServerAsyncResponseWriter< ::mt4api::TradeOpenResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestOpen(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::mt4api::TradeOpenResp, ::mt4api::TradeOpenReq>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -191,7 +198,7 @@ class Trade final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Open(::grpc::ServerContext* context, const ::mt4api::TradeOpenReq* request, ::mt4api::TradeOpenResp* response) final override {
+    ::grpc::Status Open(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::mt4api::TradeOpenResp, ::mt4api::TradeOpenReq>* stream) final override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -229,26 +236,6 @@ class Trade final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Open : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service *service) {}
-   public:
-    WithStreamedUnaryMethod_Open() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>(std::bind(&WithStreamedUnaryMethod_Open<BaseClass>::StreamedOpen, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_Open() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Open(::grpc::ServerContext* context, const ::mt4api::TradeOpenReq* request, ::mt4api::TradeOpenResp* response) final override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedOpen(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mt4api::TradeOpenReq,::mt4api::TradeOpenResp>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Close : public BaseClass {
@@ -290,9 +277,9 @@ class Trade final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mt4api::TradeUpdateReq,::mt4api::TradeUpdateResp>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Close<WithStreamedUnaryMethod_Update<Service > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Close<WithStreamedUnaryMethod_Update<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Close<WithStreamedUnaryMethod_Update<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Close<WithStreamedUnaryMethod_Update<Service > > StreamedService;
 };
 
 }  // namespace mt4api

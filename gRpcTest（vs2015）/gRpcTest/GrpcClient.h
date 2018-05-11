@@ -24,6 +24,7 @@ using service::MT4Callback;
 using service::ActivationReq;
 using service::NullResp;
 
+/*
 class GreeterClient {
 public:
 	GreeterClient(std::shared_ptr<Channel> channel)
@@ -60,12 +61,57 @@ public:
 private:
 	std::unique_ptr<MT4Callback::Stub> stub_;
 };
+*/
+
+class GreeterClient {
+public:
+	GreeterClient(std::shared_ptr<Channel> channel)
+		: stub_(MT4Callback::NewStub(channel)) {}
+
+	// Assembles the client's payload, sends it and presents the response back
+	// from the server.
+	void Activation(ActivationReq data) {
+		// Data we are sending to the server.
+		ActivationReq request(data);
+		//request.set_name(user);
+
+		// Container for the data we expect from the server.
+		NullResp reply;
+
+		// Context for the client. It could be used to convey extra information to
+		// the server and/or tweak certain RPC behaviors.
+		ClientContext context;
+
+		// The actual RPC.
+		//Status status = stub_->Activation(&context, request, &reply);
+
+		std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>>  stream(stub_->Activation(&context));
+		if (!stream->Write(request) || !stream->WritesDone())
+		{
+			//return false;
+		}
+		
+
+		// Act upon its status.
+		//if (status.ok()) {
+		//	return reply.message();
+		//}
+		//else {
+		//	std::cout << status.error_code() << ": " << status.error_message()
+		//		<< std::endl;
+		//	return "RPC failed";
+		//}
+	}
+
+private:
+	std::unique_ptr<MT4Callback::Stub> stub_;
+};
 
 class TradeClient {
 public:
 	TradeClient(std::shared_ptr<Channel> channel)
 		: stub_(::mt4api::Trade::NewStub(channel)) {}
-
+	/*
 	// Assembles the client's payload, sends it and presents the response back
 	// from the server.
 	bool OpenOrder(const ::mt4api::TradeOpenReq& request, ::mt4api::TradeOpenResp* response) {
@@ -93,7 +139,45 @@ public:
 			return false;
 		}
 	}
+	*/
 
+	// Assembles the client's payload, sends it and presents the response back
+	// from the server.
+	bool OpenOrder(const ::mt4api::TradeOpenReq& request, ::mt4api::TradeOpenResp* response) {
+		// Data we are sending to the server.
+		//ActivationReq request(data);
+		//request.set_name(user);
+
+		// Container for the data we expect from the server.
+		//NullResp reply;
+
+		// Context for the client. It could be used to convey extra information to
+		// the server and/or tweak certain RPC behaviors.
+		//ClientContext context; // as class data member
+
+		// The actual RPC.
+		//Status status = stub_->Open(&context, request, response);
+		std::unique_ptr< ::grpc::ClientReaderWriter< ::mt4api::TradeOpenReq, ::mt4api::TradeOpenResp>> stream(stub_->Open(&context));
+		if (! stream->Write(request))
+		{
+			return false;
+		}
+		
+		if (!stream->Read(response))
+		{
+			return false;
+		}
+		Status status = stream->Finish();
+		// Act upon its status.
+		if (status.ok()) {
+			return true;
+		}
+		else {
+			std::cout << status.error_code() << ": " << status.error_message()
+				<< std::endl;
+			return false;
+		}
+	}
 private:
 	std::unique_ptr<::mt4api::Trade::Stub> stub_;
 	// Context for the client. It could be used to convey extra information to

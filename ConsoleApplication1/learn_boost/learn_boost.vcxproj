@@ -249,11 +249,6 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="E:\Alan.Yan\ConsoleApplication1\learn_boost\Log.cpp" />
-    <ClCompile Include="E:\Alan.Yan\ConsoleApplication1\learn_boost\learn_boost.cpp" />
-    <ClCompile Include="E:\Alan.Yan\ConsoleApplication1\learn_boost\stdafx.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="E:\Alan.Yan\ConsoleApplication1\learn_boost\ZERO_CHECK.vcxproj">
       <Project>{05F19FDD-E6E5-3A5B-865D-A470AF5C9D2C}</Project>
       <Name>ZERO_CHECK</Name>
@@ -264,6 +259,11 @@
     <ClInclude Include="Log.h" />
     <ClInclude Include="Multiton.h" />
     <ClInclude Include="Singleton.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="learn_boost.cpp" />
+    <ClCompile Include="Log.cpp" />
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

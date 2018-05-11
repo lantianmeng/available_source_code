@@ -33,33 +33,64 @@ class MT4Callback final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status Activation(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::service::NullResp* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::service::NullResp>> AsyncActivation(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::service::NullResp>>(AsyncActivationRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>> Activation(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>>(ActivationRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::service::NullResp>> PrepareAsyncActivation(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::service::NullResp>>(PrepareAsyncActivationRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>> AsyncActivation(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>>(AsyncActivationRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>> PrepareAsyncActivation(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>>(PrepareAsyncActivationRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::service::PriceReq, ::service::NullResp>> Price(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::service::PriceReq, ::service::NullResp>>(PriceRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::service::PriceReq, ::service::NullResp>> AsyncPrice(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::service::PriceReq, ::service::NullResp>>(AsyncPriceRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::service::PriceReq, ::service::NullResp>> PrepareAsyncPrice(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::service::PriceReq, ::service::NullResp>>(PrepareAsyncPriceRaw(context, cq));
     }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::service::NullResp>* AsyncActivationRaw(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::service::NullResp>* PrepareAsyncActivationRaw(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>* ActivationRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>* AsyncActivationRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::service::ActivationReq, ::service::NullResp>* PrepareAsyncActivationRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::service::PriceReq, ::service::NullResp>* PriceRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::service::PriceReq, ::service::NullResp>* AsyncPriceRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::service::PriceReq, ::service::NullResp>* PrepareAsyncPriceRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status Activation(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::service::NullResp* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::service::NullResp>> AsyncActivation(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::service::NullResp>>(AsyncActivationRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::service::ActivationReq, ::service::NullResp>> Activation(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::service::ActivationReq, ::service::NullResp>>(ActivationRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::service::NullResp>> PrepareAsyncActivation(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::service::NullResp>>(PrepareAsyncActivationRaw(context, request, cq));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::service::ActivationReq, ::service::NullResp>> AsyncActivation(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::service::ActivationReq, ::service::NullResp>>(AsyncActivationRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::service::ActivationReq, ::service::NullResp>> PrepareAsyncActivation(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::service::ActivationReq, ::service::NullResp>>(PrepareAsyncActivationRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::service::PriceReq, ::service::NullResp>> Price(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::service::PriceReq, ::service::NullResp>>(PriceRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::service::PriceReq, ::service::NullResp>> AsyncPrice(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::service::PriceReq, ::service::NullResp>>(AsyncPriceRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::service::PriceReq, ::service::NullResp>> PrepareAsyncPrice(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::service::PriceReq, ::service::NullResp>>(PrepareAsyncPriceRaw(context, cq));
     }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    ::grpc::ClientAsyncResponseReader< ::service::NullResp>* AsyncActivationRaw(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::service::NullResp>* PrepareAsyncActivationRaw(::grpc::ClientContext* context, const ::service::ActivationReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::service::ActivationReq, ::service::NullResp>* ActivationRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::service::ActivationReq, ::service::NullResp>* AsyncActivationRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::service::ActivationReq, ::service::NullResp>* PrepareAsyncActivationRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::service::PriceReq, ::service::NullResp>* PriceRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::service::PriceReq, ::service::NullResp>* AsyncPriceRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::service::PriceReq, ::service::NullResp>* PrepareAsyncPriceRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Activation_;
+    const ::grpc::internal::RpcMethod rpcmethod_Price_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -67,7 +98,8 @@ class MT4Callback final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Activation(::grpc::ServerContext* context, const ::service::ActivationReq* request, ::service::NullResp* response);
+    virtual ::grpc::Status Activation(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::service::NullResp, ::service::ActivationReq>* stream);
+    virtual ::grpc::Status Price(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::service::NullResp, ::service::PriceReq>* stream);
   };
   template <class BaseClass>
   class WithAsyncMethod_Activation : public BaseClass {
@@ -81,15 +113,35 @@ class MT4Callback final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Activation(::grpc::ServerContext* context, const ::service::ActivationReq* request, ::service::NullResp* response) final override {
+    ::grpc::Status Activation(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::service::NullResp, ::service::ActivationReq>* stream) final override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestActivation(::grpc::ServerContext* context, ::service::ActivationReq* request, ::grpc::ServerAsyncResponseWriter< ::service::NullResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestActivation(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::service::NullResp, ::service::ActivationReq>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Activation<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Price : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_Price() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Price() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Price(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::service::NullResp, ::service::PriceReq>* stream) final override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPrice(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::service::NullResp, ::service::PriceReq>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Activation<WithAsyncMethod_Price<Service > > AsyncService;
   template <class BaseClass>
   class WithGenericMethod_Activation : public BaseClass {
    private:
@@ -102,34 +154,31 @@ class MT4Callback final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Activation(::grpc::ServerContext* context, const ::service::ActivationReq* request, ::service::NullResp* response) final override {
+    ::grpc::Status Activation(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::service::NullResp, ::service::ActivationReq>* stream) final override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_Activation : public BaseClass {
+  class WithGenericMethod_Price : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
-    WithStreamedUnaryMethod_Activation() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::service::ActivationReq, ::service::NullResp>(std::bind(&WithStreamedUnaryMethod_Activation<BaseClass>::StreamedActivation, this, std::placeholders::_1, std::placeholders::_2)));
+    WithGenericMethod_Price() {
+      ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithStreamedUnaryMethod_Activation() override {
+    ~WithGenericMethod_Price() override {
       BaseClassMustBeDerivedFromService(this);
     }
-    // disable regular version of this method
-    ::grpc::Status Activation(::grpc::ServerContext* context, const ::service::ActivationReq* request, ::service::NullResp* response) final override {
+    // disable synchronous version of this method
+    ::grpc::Status Price(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::service::NullResp, ::service::PriceReq>* stream) final override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedActivation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::service::ActivationReq,::service::NullResp>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Activation<Service > StreamedUnaryService;
+  typedef Service StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Activation<Service > StreamedService;
+  typedef Service StreamedService;
 };
 
 }  // namespace service

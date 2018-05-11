@@ -36,7 +36,7 @@ namespace protobuf_activation_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[2];
+  static const ::google::protobuf::internal::ParseTable schema[5];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -46,18 +46,36 @@ void InitDefaultsNullRespImpl();
 void InitDefaultsNullResp();
 void InitDefaultsActivationReqImpl();
 void InitDefaultsActivationReq();
+void InitDefaultsActivationDataImpl();
+void InitDefaultsActivationData();
+void InitDefaultsPriceReqImpl();
+void InitDefaultsPriceReq();
+void InitDefaultsPriceDataImpl();
+void InitDefaultsPriceData();
 inline void InitDefaults() {
   InitDefaultsNullResp();
   InitDefaultsActivationReq();
+  InitDefaultsActivationData();
+  InitDefaultsPriceReq();
+  InitDefaultsPriceData();
 }
 }  // namespace protobuf_activation_2eproto
 namespace service {
+class ActivationData;
+class ActivationDataDefaultTypeInternal;
+extern ActivationDataDefaultTypeInternal _ActivationData_default_instance_;
 class ActivationReq;
 class ActivationReqDefaultTypeInternal;
 extern ActivationReqDefaultTypeInternal _ActivationReq_default_instance_;
 class NullResp;
 class NullRespDefaultTypeInternal;
 extern NullRespDefaultTypeInternal _NullResp_default_instance_;
+class PriceData;
+class PriceDataDefaultTypeInternal;
+extern PriceDataDefaultTypeInternal _PriceData_default_instance_;
+class PriceReq;
+class PriceReqDefaultTypeInternal;
+extern PriceReqDefaultTypeInternal _PriceReq_default_instance_;
 }  // namespace service
 namespace service {
 
@@ -89,6 +107,12 @@ class NullResp : public ::google::protobuf::Message /* @@protoc_insertion_point(
     return *this;
   }
   #endif
+  inline ::google::protobuf::Arena* GetArena() const PROTOBUF_FINAL {
+    return GetArenaNoVirtual();
+  }
+  inline void* GetMaybeArenaPointer() const PROTOBUF_FINAL {
+    return MaybeArenaPtr();
+  }
   static const ::google::protobuf::Descriptor* descriptor();
   static const NullResp& default_instance();
 
@@ -100,6 +124,7 @@ class NullResp : public ::google::protobuf::Message /* @@protoc_insertion_point(
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
     0;
 
+  void UnsafeArenaSwap(NullResp* other);
   void Swap(NullResp* other);
   friend void swap(NullResp& a, NullResp& b) {
     a.Swap(&b);
@@ -130,12 +155,17 @@ class NullResp : public ::google::protobuf::Message /* @@protoc_insertion_point(
   void SharedDtor();
   void SetCachedSize(int size) const PROTOBUF_FINAL;
   void InternalSwap(NullResp* other);
+  protected:
+  explicit NullResp(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return NULL;
+    return _internal_metadata_.arena();
   }
   inline void* MaybeArenaPtr() const {
-    return NULL;
+    return _internal_metadata_.raw_arena_ptr();
   }
   public:
 
@@ -149,6 +179,9 @@ class NullResp : public ::google::protobuf::Message /* @@protoc_insertion_point(
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   mutable int _cached_size_;
   friend struct ::protobuf_activation_2eproto::TableStruct;
   friend void ::protobuf_activation_2eproto::InitDefaultsNullRespImpl();
@@ -181,6 +214,12 @@ class ActivationReq : public ::google::protobuf::Message /* @@protoc_insertion_p
     return *this;
   }
   #endif
+  inline ::google::protobuf::Arena* GetArena() const PROTOBUF_FINAL {
+    return GetArenaNoVirtual();
+  }
+  inline void* GetMaybeArenaPointer() const PROTOBUF_FINAL {
+    return MaybeArenaPtr();
+  }
   static const ::google::protobuf::Descriptor* descriptor();
   static const ActivationReq& default_instance();
 
@@ -192,6 +231,7 @@ class ActivationReq : public ::google::protobuf::Message /* @@protoc_insertion_p
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
     1;
 
+  void UnsafeArenaSwap(ActivationReq* other);
   void Swap(ActivationReq* other);
   friend void swap(ActivationReq& a, ActivationReq& b) {
     a.Swap(&b);
@@ -222,12 +262,17 @@ class ActivationReq : public ::google::protobuf::Message /* @@protoc_insertion_p
   void SharedDtor();
   void SetCachedSize(int size) const PROTOBUF_FINAL;
   void InternalSwap(ActivationReq* other);
+  protected:
+  explicit ActivationReq(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return NULL;
+    return _internal_metadata_.arena();
   }
   inline void* MaybeArenaPtr() const {
-    return NULL;
+    return _internal_metadata_.raw_arena_ptr();
   }
   public:
 
@@ -237,7 +282,127 @@ class ActivationReq : public ::google::protobuf::Message /* @@protoc_insertion_p
 
   // accessors -------------------------------------------------------
 
-  // string symbol = 1;
+  // repeated .service.ActivationData data = 1;
+  int data_size() const;
+  void clear_data();
+  static const int kDataFieldNumber = 1;
+  const ::service::ActivationData& data(int index) const;
+  ::service::ActivationData* mutable_data(int index);
+  ::service::ActivationData* add_data();
+  ::google::protobuf::RepeatedPtrField< ::service::ActivationData >*
+      mutable_data();
+  const ::google::protobuf::RepeatedPtrField< ::service::ActivationData >&
+      data() const;
+
+  // @@protoc_insertion_point(class_scope:service.ActivationReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::google::protobuf::RepeatedPtrField< ::service::ActivationData > data_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_activation_2eproto::TableStruct;
+  friend void ::protobuf_activation_2eproto::InitDefaultsActivationReqImpl();
+};
+// -------------------------------------------------------------------
+
+class ActivationData : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:service.ActivationData) */ {
+ public:
+  ActivationData();
+  virtual ~ActivationData();
+
+  ActivationData(const ActivationData& from);
+
+  inline ActivationData& operator=(const ActivationData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ActivationData(ActivationData&& from) noexcept
+    : ActivationData() {
+    *this = ::std::move(from);
+  }
+
+  inline ActivationData& operator=(ActivationData&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline ::google::protobuf::Arena* GetArena() const PROTOBUF_FINAL {
+    return GetArenaNoVirtual();
+  }
+  inline void* GetMaybeArenaPointer() const PROTOBUF_FINAL {
+    return MaybeArenaPtr();
+  }
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ActivationData& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ActivationData* internal_default_instance() {
+    return reinterpret_cast<const ActivationData*>(
+               &_ActivationData_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    2;
+
+  void UnsafeArenaSwap(ActivationData* other);
+  void Swap(ActivationData* other);
+  friend void swap(ActivationData& a, ActivationData& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ActivationData* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  ActivationData* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const ActivationData& from);
+  void MergeFrom(const ActivationData& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(ActivationData* other);
+  protected:
+  explicit ActivationData(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string Symbol = 1;
   void clear_symbol();
   static const int kSymbolFieldNumber = 1;
   const ::std::string& symbol() const;
@@ -250,113 +415,418 @@ class ActivationReq : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::std::string* mutable_symbol();
   ::std::string* release_symbol();
   void set_allocated_symbol(::std::string* symbol);
+  PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  ::std::string* unsafe_arena_release_symbol();
+  PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_symbol(
+      ::std::string* symbol);
 
-  // int32 activation = 2;
+  // int32 Activation = 2;
   void clear_activation();
   static const int kActivationFieldNumber = 2;
   ::google::protobuf::int32 activation() const;
   void set_activation(::google::protobuf::int32 value);
 
-  // int32 cmd = 3;
+  // int32 CMD = 3;
   void clear_cmd();
-  static const int kCmdFieldNumber = 3;
+  static const int kCMDFieldNumber = 3;
   ::google::protobuf::int32 cmd() const;
   void set_cmd(::google::protobuf::int32 value);
 
-  // int32 mt4_id = 4;
-  void clear_mt4_id();
-  static const int kMt4IdFieldNumber = 4;
-  ::google::protobuf::int32 mt4_id() const;
-  void set_mt4_id(::google::protobuf::int32 value);
+  // int32 MT4ID = 4;
+  void clear_mt4id();
+  static const int kMT4IDFieldNumber = 4;
+  ::google::protobuf::int32 mt4id() const;
+  void set_mt4id(::google::protobuf::int32 value);
 
-  // int32 volume = 5;
+  // int32 Volume = 5;
   void clear_volume();
   static const int kVolumeFieldNumber = 5;
   ::google::protobuf::int32 volume() const;
   void set_volume(::google::protobuf::int32 value);
 
-  // int64 open_time = 7;
-  void clear_open_time();
+  // int64 OpenTime = 7;
+  void clear_opentime();
   static const int kOpenTimeFieldNumber = 7;
-  ::google::protobuf::int64 open_time() const;
-  void set_open_time(::google::protobuf::int64 value);
+  ::google::protobuf::int64 opentime() const;
+  void set_opentime(::google::protobuf::int64 value);
 
-  // int64 close_time = 8;
-  void clear_close_time();
+  // int64 CloseTime = 8;
+  void clear_closetime();
   static const int kCloseTimeFieldNumber = 8;
-  ::google::protobuf::int64 close_time() const;
-  void set_close_time(::google::protobuf::int64 value);
+  ::google::protobuf::int64 closetime() const;
+  void set_closetime(::google::protobuf::int64 value);
 
-  // double open_price = 9;
-  void clear_open_price();
+  // double OpenPrice = 9;
+  void clear_openprice();
   static const int kOpenPriceFieldNumber = 9;
-  double open_price() const;
-  void set_open_price(double value);
+  double openprice() const;
+  void set_openprice(double value);
 
-  // double close_price = 10;
-  void clear_close_price();
+  // double ClosePrice = 10;
+  void clear_closeprice();
   static const int kClosePriceFieldNumber = 10;
-  double close_price() const;
-  void set_close_price(double value);
+  double closeprice() const;
+  void set_closeprice(double value);
 
-  // double profit = 11;
+  // double Profit = 11;
   void clear_profit();
   static const int kProfitFieldNumber = 11;
   double profit() const;
   void set_profit(double value);
 
-  // double sl = 12;
-  void clear_sl();
-  static const int kSlFieldNumber = 12;
-  double sl() const;
-  void set_sl(double value);
-
-  // double tp = 13;
-  void clear_tp();
-  static const int kTpFieldNumber = 13;
-  double tp() const;
-  void set_tp(double value);
-
-  // int64 expiration = 14;
-  void clear_expiration();
-  static const int kExpirationFieldNumber = 14;
-  ::google::protobuf::int64 expiration() const;
-  void set_expiration(::google::protobuf::int64 value);
-
-  // int64 time_stamp = 15;
-  void clear_time_stamp();
-  static const int kTimeStampFieldNumber = 15;
-  ::google::protobuf::int64 time_stamp() const;
-  void set_time_stamp(::google::protobuf::int64 value);
-
-  // int32 ticket = 6;
+  // int32 Ticket = 6;
   void clear_ticket();
   static const int kTicketFieldNumber = 6;
   ::google::protobuf::int32 ticket() const;
   void set_ticket(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:service.ActivationReq)
+  // int32 ActionType = 16;
+  void clear_actiontype();
+  static const int kActionTypeFieldNumber = 16;
+  ::google::protobuf::int32 actiontype() const;
+  void set_actiontype(::google::protobuf::int32 value);
+
+  // double SL = 12;
+  void clear_sl();
+  static const int kSLFieldNumber = 12;
+  double sl() const;
+  void set_sl(double value);
+
+  // double TP = 13;
+  void clear_tp();
+  static const int kTPFieldNumber = 13;
+  double tp() const;
+  void set_tp(double value);
+
+  // int64 Expiration = 14;
+  void clear_expiration();
+  static const int kExpirationFieldNumber = 14;
+  ::google::protobuf::int64 expiration() const;
+  void set_expiration(::google::protobuf::int64 value);
+
+  // int64 Timestamp = 15;
+  void clear_timestamp();
+  static const int kTimestampFieldNumber = 15;
+  ::google::protobuf::int64 timestamp() const;
+  void set_timestamp(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:service.ActivationData)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   ::google::protobuf::internal::ArenaStringPtr symbol_;
   ::google::protobuf::int32 activation_;
   ::google::protobuf::int32 cmd_;
-  ::google::protobuf::int32 mt4_id_;
+  ::google::protobuf::int32 mt4id_;
   ::google::protobuf::int32 volume_;
-  ::google::protobuf::int64 open_time_;
-  ::google::protobuf::int64 close_time_;
-  double open_price_;
-  double close_price_;
+  ::google::protobuf::int64 opentime_;
+  ::google::protobuf::int64 closetime_;
+  double openprice_;
+  double closeprice_;
   double profit_;
+  ::google::protobuf::int32 ticket_;
+  ::google::protobuf::int32 actiontype_;
   double sl_;
   double tp_;
   ::google::protobuf::int64 expiration_;
-  ::google::protobuf::int64 time_stamp_;
-  ::google::protobuf::int32 ticket_;
+  ::google::protobuf::int64 timestamp_;
   mutable int _cached_size_;
   friend struct ::protobuf_activation_2eproto::TableStruct;
-  friend void ::protobuf_activation_2eproto::InitDefaultsActivationReqImpl();
+  friend void ::protobuf_activation_2eproto::InitDefaultsActivationDataImpl();
+};
+// -------------------------------------------------------------------
+
+class PriceReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:service.PriceReq) */ {
+ public:
+  PriceReq();
+  virtual ~PriceReq();
+
+  PriceReq(const PriceReq& from);
+
+  inline PriceReq& operator=(const PriceReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  PriceReq(PriceReq&& from) noexcept
+    : PriceReq() {
+    *this = ::std::move(from);
+  }
+
+  inline PriceReq& operator=(PriceReq&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline ::google::protobuf::Arena* GetArena() const PROTOBUF_FINAL {
+    return GetArenaNoVirtual();
+  }
+  inline void* GetMaybeArenaPointer() const PROTOBUF_FINAL {
+    return MaybeArenaPtr();
+  }
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const PriceReq& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PriceReq* internal_default_instance() {
+    return reinterpret_cast<const PriceReq*>(
+               &_PriceReq_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    3;
+
+  void UnsafeArenaSwap(PriceReq* other);
+  void Swap(PriceReq* other);
+  friend void swap(PriceReq& a, PriceReq& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PriceReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  PriceReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const PriceReq& from);
+  void MergeFrom(const PriceReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(PriceReq* other);
+  protected:
+  explicit PriceReq(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .service.PriceData data = 1;
+  int data_size() const;
+  void clear_data();
+  static const int kDataFieldNumber = 1;
+  const ::service::PriceData& data(int index) const;
+  ::service::PriceData* mutable_data(int index);
+  ::service::PriceData* add_data();
+  ::google::protobuf::RepeatedPtrField< ::service::PriceData >*
+      mutable_data();
+  const ::google::protobuf::RepeatedPtrField< ::service::PriceData >&
+      data() const;
+
+  // @@protoc_insertion_point(class_scope:service.PriceReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::google::protobuf::RepeatedPtrField< ::service::PriceData > data_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_activation_2eproto::TableStruct;
+  friend void ::protobuf_activation_2eproto::InitDefaultsPriceReqImpl();
+};
+// -------------------------------------------------------------------
+
+class PriceData : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:service.PriceData) */ {
+ public:
+  PriceData();
+  virtual ~PriceData();
+
+  PriceData(const PriceData& from);
+
+  inline PriceData& operator=(const PriceData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  PriceData(PriceData&& from) noexcept
+    : PriceData() {
+    *this = ::std::move(from);
+  }
+
+  inline PriceData& operator=(PriceData&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline ::google::protobuf::Arena* GetArena() const PROTOBUF_FINAL {
+    return GetArenaNoVirtual();
+  }
+  inline void* GetMaybeArenaPointer() const PROTOBUF_FINAL {
+    return MaybeArenaPtr();
+  }
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const PriceData& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PriceData* internal_default_instance() {
+    return reinterpret_cast<const PriceData*>(
+               &_PriceData_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    4;
+
+  void UnsafeArenaSwap(PriceData* other);
+  void Swap(PriceData* other);
+  friend void swap(PriceData& a, PriceData& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PriceData* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  PriceData* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const PriceData& from);
+  void MergeFrom(const PriceData& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(PriceData* other);
+  protected:
+  explicit PriceData(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string Symbol = 1;
+  void clear_symbol();
+  static const int kSymbolFieldNumber = 1;
+  const ::std::string& symbol() const;
+  void set_symbol(const ::std::string& value);
+  #if LANG_CXX11
+  void set_symbol(::std::string&& value);
+  #endif
+  void set_symbol(const char* value);
+  void set_symbol(const char* value, size_t size);
+  ::std::string* mutable_symbol();
+  ::std::string* release_symbol();
+  void set_allocated_symbol(::std::string* symbol);
+  PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  ::std::string* unsafe_arena_release_symbol();
+  PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_symbol(
+      ::std::string* symbol);
+
+  // int64 Timestamp = 2;
+  void clear_timestamp();
+  static const int kTimestampFieldNumber = 2;
+  ::google::protobuf::int64 timestamp() const;
+  void set_timestamp(::google::protobuf::int64 value);
+
+  // double Bid = 3;
+  void clear_bid();
+  static const int kBidFieldNumber = 3;
+  double bid() const;
+  void set_bid(double value);
+
+  // double Ask = 4;
+  void clear_ask();
+  static const int kAskFieldNumber = 4;
+  double ask() const;
+  void set_ask(double value);
+
+  // double Height = 5;
+  void clear_height();
+  static const int kHeightFieldNumber = 5;
+  double height() const;
+  void set_height(double value);
+
+  // double Low = 6;
+  void clear_low();
+  static const int kLowFieldNumber = 6;
+  double low() const;
+  void set_low(double value);
+
+  // @@protoc_insertion_point(class_scope:service.PriceData)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::google::protobuf::internal::ArenaStringPtr symbol_;
+  ::google::protobuf::int64 timestamp_;
+  double bid_;
+  double ask_;
+  double height_;
+  double low_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_activation_2eproto::TableStruct;
+  friend void ::protobuf_activation_2eproto::InitDefaultsPriceDataImpl();
 };
 // ===================================================================
 
@@ -373,258 +843,517 @@ class ActivationReq : public ::google::protobuf::Message /* @@protoc_insertion_p
 
 // ActivationReq
 
-// string symbol = 1;
-inline void ActivationReq::clear_symbol() {
-  symbol_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// repeated .service.ActivationData data = 1;
+inline int ActivationReq::data_size() const {
+  return data_.size();
 }
-inline const ::std::string& ActivationReq::symbol() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.symbol)
-  return symbol_.GetNoArena();
+inline void ActivationReq::clear_data() {
+  data_.Clear();
 }
-inline void ActivationReq::set_symbol(const ::std::string& value) {
+inline const ::service::ActivationData& ActivationReq::data(int index) const {
+  // @@protoc_insertion_point(field_get:service.ActivationReq.data)
+  return data_.Get(index);
+}
+inline ::service::ActivationData* ActivationReq::mutable_data(int index) {
+  // @@protoc_insertion_point(field_mutable:service.ActivationReq.data)
+  return data_.Mutable(index);
+}
+inline ::service::ActivationData* ActivationReq::add_data() {
+  // @@protoc_insertion_point(field_add:service.ActivationReq.data)
+  return data_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::service::ActivationData >*
+ActivationReq::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:service.ActivationReq.data)
+  return &data_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::service::ActivationData >&
+ActivationReq::data() const {
+  // @@protoc_insertion_point(field_list:service.ActivationReq.data)
+  return data_;
+}
+
+// -------------------------------------------------------------------
+
+// ActivationData
+
+// string Symbol = 1;
+inline void ActivationData::clear_symbol() {
+  symbol_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline const ::std::string& ActivationData::symbol() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.Symbol)
+  return symbol_.Get();
+}
+inline void ActivationData::set_symbol(const ::std::string& value) {
   
-  symbol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:service.ActivationReq.symbol)
+  symbol_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set:service.ActivationData.Symbol)
 }
 #if LANG_CXX11
-inline void ActivationReq::set_symbol(::std::string&& value) {
+inline void ActivationData::set_symbol(::std::string&& value) {
   
-  symbol_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:service.ActivationReq.symbol)
+  symbol_.Set(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_rvalue:service.ActivationData.Symbol)
 }
 #endif
-inline void ActivationReq::set_symbol(const char* value) {
+inline void ActivationData::set_symbol(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
-  symbol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:service.ActivationReq.symbol)
+  symbol_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_char:service.ActivationData.Symbol)
 }
-inline void ActivationReq::set_symbol(const char* value, size_t size) {
+inline void ActivationData::set_symbol(const char* value,
+    size_t size) {
   
-  symbol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:service.ActivationReq.symbol)
+  symbol_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_pointer:service.ActivationData.Symbol)
 }
-inline ::std::string* ActivationReq::mutable_symbol() {
+inline ::std::string* ActivationData::mutable_symbol() {
   
-  // @@protoc_insertion_point(field_mutable:service.ActivationReq.symbol)
-  return symbol_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  // @@protoc_insertion_point(field_mutable:service.ActivationData.Symbol)
+  return symbol_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
-inline ::std::string* ActivationReq::release_symbol() {
-  // @@protoc_insertion_point(field_release:service.ActivationReq.symbol)
+inline ::std::string* ActivationData::release_symbol() {
+  // @@protoc_insertion_point(field_release:service.ActivationData.Symbol)
   
-  return symbol_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return symbol_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
-inline void ActivationReq::set_allocated_symbol(::std::string* symbol) {
+inline void ActivationData::set_allocated_symbol(::std::string* symbol) {
   if (symbol != NULL) {
     
   } else {
     
   }
-  symbol_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), symbol);
-  // @@protoc_insertion_point(field_set_allocated:service.ActivationReq.symbol)
+  symbol_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), symbol,
+      GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_allocated:service.ActivationData.Symbol)
+}
+inline ::std::string* ActivationData::unsafe_arena_release_symbol() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:service.ActivationData.Symbol)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return symbol_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
+}
+inline void ActivationData::unsafe_arena_set_allocated_symbol(
+    ::std::string* symbol) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (symbol != NULL) {
+    
+  } else {
+    
+  }
+  symbol_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      symbol, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:service.ActivationData.Symbol)
 }
 
-// int32 activation = 2;
-inline void ActivationReq::clear_activation() {
+// int32 Activation = 2;
+inline void ActivationData::clear_activation() {
   activation_ = 0;
 }
-inline ::google::protobuf::int32 ActivationReq::activation() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.activation)
+inline ::google::protobuf::int32 ActivationData::activation() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.Activation)
   return activation_;
 }
-inline void ActivationReq::set_activation(::google::protobuf::int32 value) {
+inline void ActivationData::set_activation(::google::protobuf::int32 value) {
   
   activation_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.activation)
+  // @@protoc_insertion_point(field_set:service.ActivationData.Activation)
 }
 
-// int32 cmd = 3;
-inline void ActivationReq::clear_cmd() {
+// int32 CMD = 3;
+inline void ActivationData::clear_cmd() {
   cmd_ = 0;
 }
-inline ::google::protobuf::int32 ActivationReq::cmd() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.cmd)
+inline ::google::protobuf::int32 ActivationData::cmd() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.CMD)
   return cmd_;
 }
-inline void ActivationReq::set_cmd(::google::protobuf::int32 value) {
+inline void ActivationData::set_cmd(::google::protobuf::int32 value) {
   
   cmd_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.cmd)
+  // @@protoc_insertion_point(field_set:service.ActivationData.CMD)
 }
 
-// int32 mt4_id = 4;
-inline void ActivationReq::clear_mt4_id() {
-  mt4_id_ = 0;
+// int32 MT4ID = 4;
+inline void ActivationData::clear_mt4id() {
+  mt4id_ = 0;
 }
-inline ::google::protobuf::int32 ActivationReq::mt4_id() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.mt4_id)
-  return mt4_id_;
+inline ::google::protobuf::int32 ActivationData::mt4id() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.MT4ID)
+  return mt4id_;
 }
-inline void ActivationReq::set_mt4_id(::google::protobuf::int32 value) {
+inline void ActivationData::set_mt4id(::google::protobuf::int32 value) {
   
-  mt4_id_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.mt4_id)
+  mt4id_ = value;
+  // @@protoc_insertion_point(field_set:service.ActivationData.MT4ID)
 }
 
-// int32 volume = 5;
-inline void ActivationReq::clear_volume() {
+// int32 Volume = 5;
+inline void ActivationData::clear_volume() {
   volume_ = 0;
 }
-inline ::google::protobuf::int32 ActivationReq::volume() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.volume)
+inline ::google::protobuf::int32 ActivationData::volume() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.Volume)
   return volume_;
 }
-inline void ActivationReq::set_volume(::google::protobuf::int32 value) {
+inline void ActivationData::set_volume(::google::protobuf::int32 value) {
   
   volume_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.volume)
+  // @@protoc_insertion_point(field_set:service.ActivationData.Volume)
 }
 
-// int32 ticket = 6;
-inline void ActivationReq::clear_ticket() {
+// int32 Ticket = 6;
+inline void ActivationData::clear_ticket() {
   ticket_ = 0;
 }
-inline ::google::protobuf::int32 ActivationReq::ticket() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.ticket)
+inline ::google::protobuf::int32 ActivationData::ticket() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.Ticket)
   return ticket_;
 }
-inline void ActivationReq::set_ticket(::google::protobuf::int32 value) {
+inline void ActivationData::set_ticket(::google::protobuf::int32 value) {
   
   ticket_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.ticket)
+  // @@protoc_insertion_point(field_set:service.ActivationData.Ticket)
 }
 
-// int64 open_time = 7;
-inline void ActivationReq::clear_open_time() {
-  open_time_ = GOOGLE_LONGLONG(0);
+// int64 OpenTime = 7;
+inline void ActivationData::clear_opentime() {
+  opentime_ = GOOGLE_LONGLONG(0);
 }
-inline ::google::protobuf::int64 ActivationReq::open_time() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.open_time)
-  return open_time_;
+inline ::google::protobuf::int64 ActivationData::opentime() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.OpenTime)
+  return opentime_;
 }
-inline void ActivationReq::set_open_time(::google::protobuf::int64 value) {
+inline void ActivationData::set_opentime(::google::protobuf::int64 value) {
   
-  open_time_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.open_time)
+  opentime_ = value;
+  // @@protoc_insertion_point(field_set:service.ActivationData.OpenTime)
 }
 
-// int64 close_time = 8;
-inline void ActivationReq::clear_close_time() {
-  close_time_ = GOOGLE_LONGLONG(0);
+// int64 CloseTime = 8;
+inline void ActivationData::clear_closetime() {
+  closetime_ = GOOGLE_LONGLONG(0);
 }
-inline ::google::protobuf::int64 ActivationReq::close_time() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.close_time)
-  return close_time_;
+inline ::google::protobuf::int64 ActivationData::closetime() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.CloseTime)
+  return closetime_;
 }
-inline void ActivationReq::set_close_time(::google::protobuf::int64 value) {
+inline void ActivationData::set_closetime(::google::protobuf::int64 value) {
   
-  close_time_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.close_time)
+  closetime_ = value;
+  // @@protoc_insertion_point(field_set:service.ActivationData.CloseTime)
 }
 
-// double open_price = 9;
-inline void ActivationReq::clear_open_price() {
-  open_price_ = 0;
+// double OpenPrice = 9;
+inline void ActivationData::clear_openprice() {
+  openprice_ = 0;
 }
-inline double ActivationReq::open_price() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.open_price)
-  return open_price_;
+inline double ActivationData::openprice() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.OpenPrice)
+  return openprice_;
 }
-inline void ActivationReq::set_open_price(double value) {
+inline void ActivationData::set_openprice(double value) {
   
-  open_price_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.open_price)
+  openprice_ = value;
+  // @@protoc_insertion_point(field_set:service.ActivationData.OpenPrice)
 }
 
-// double close_price = 10;
-inline void ActivationReq::clear_close_price() {
-  close_price_ = 0;
+// double ClosePrice = 10;
+inline void ActivationData::clear_closeprice() {
+  closeprice_ = 0;
 }
-inline double ActivationReq::close_price() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.close_price)
-  return close_price_;
+inline double ActivationData::closeprice() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.ClosePrice)
+  return closeprice_;
 }
-inline void ActivationReq::set_close_price(double value) {
+inline void ActivationData::set_closeprice(double value) {
   
-  close_price_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.close_price)
+  closeprice_ = value;
+  // @@protoc_insertion_point(field_set:service.ActivationData.ClosePrice)
 }
 
-// double profit = 11;
-inline void ActivationReq::clear_profit() {
+// double Profit = 11;
+inline void ActivationData::clear_profit() {
   profit_ = 0;
 }
-inline double ActivationReq::profit() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.profit)
+inline double ActivationData::profit() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.Profit)
   return profit_;
 }
-inline void ActivationReq::set_profit(double value) {
+inline void ActivationData::set_profit(double value) {
   
   profit_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.profit)
+  // @@protoc_insertion_point(field_set:service.ActivationData.Profit)
 }
 
-// double sl = 12;
-inline void ActivationReq::clear_sl() {
+// double SL = 12;
+inline void ActivationData::clear_sl() {
   sl_ = 0;
 }
-inline double ActivationReq::sl() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.sl)
+inline double ActivationData::sl() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.SL)
   return sl_;
 }
-inline void ActivationReq::set_sl(double value) {
+inline void ActivationData::set_sl(double value) {
   
   sl_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.sl)
+  // @@protoc_insertion_point(field_set:service.ActivationData.SL)
 }
 
-// double tp = 13;
-inline void ActivationReq::clear_tp() {
+// double TP = 13;
+inline void ActivationData::clear_tp() {
   tp_ = 0;
 }
-inline double ActivationReq::tp() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.tp)
+inline double ActivationData::tp() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.TP)
   return tp_;
 }
-inline void ActivationReq::set_tp(double value) {
+inline void ActivationData::set_tp(double value) {
   
   tp_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.tp)
+  // @@protoc_insertion_point(field_set:service.ActivationData.TP)
 }
 
-// int64 expiration = 14;
-inline void ActivationReq::clear_expiration() {
+// int64 Expiration = 14;
+inline void ActivationData::clear_expiration() {
   expiration_ = GOOGLE_LONGLONG(0);
 }
-inline ::google::protobuf::int64 ActivationReq::expiration() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.expiration)
+inline ::google::protobuf::int64 ActivationData::expiration() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.Expiration)
   return expiration_;
 }
-inline void ActivationReq::set_expiration(::google::protobuf::int64 value) {
+inline void ActivationData::set_expiration(::google::protobuf::int64 value) {
   
   expiration_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.expiration)
+  // @@protoc_insertion_point(field_set:service.ActivationData.Expiration)
 }
 
-// int64 time_stamp = 15;
-inline void ActivationReq::clear_time_stamp() {
-  time_stamp_ = GOOGLE_LONGLONG(0);
+// int64 Timestamp = 15;
+inline void ActivationData::clear_timestamp() {
+  timestamp_ = GOOGLE_LONGLONG(0);
 }
-inline ::google::protobuf::int64 ActivationReq::time_stamp() const {
-  // @@protoc_insertion_point(field_get:service.ActivationReq.time_stamp)
-  return time_stamp_;
+inline ::google::protobuf::int64 ActivationData::timestamp() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.Timestamp)
+  return timestamp_;
 }
-inline void ActivationReq::set_time_stamp(::google::protobuf::int64 value) {
+inline void ActivationData::set_timestamp(::google::protobuf::int64 value) {
   
-  time_stamp_ = value;
-  // @@protoc_insertion_point(field_set:service.ActivationReq.time_stamp)
+  timestamp_ = value;
+  // @@protoc_insertion_point(field_set:service.ActivationData.Timestamp)
+}
+
+// int32 ActionType = 16;
+inline void ActivationData::clear_actiontype() {
+  actiontype_ = 0;
+}
+inline ::google::protobuf::int32 ActivationData::actiontype() const {
+  // @@protoc_insertion_point(field_get:service.ActivationData.ActionType)
+  return actiontype_;
+}
+inline void ActivationData::set_actiontype(::google::protobuf::int32 value) {
+  
+  actiontype_ = value;
+  // @@protoc_insertion_point(field_set:service.ActivationData.ActionType)
+}
+
+// -------------------------------------------------------------------
+
+// PriceReq
+
+// repeated .service.PriceData data = 1;
+inline int PriceReq::data_size() const {
+  return data_.size();
+}
+inline void PriceReq::clear_data() {
+  data_.Clear();
+}
+inline const ::service::PriceData& PriceReq::data(int index) const {
+  // @@protoc_insertion_point(field_get:service.PriceReq.data)
+  return data_.Get(index);
+}
+inline ::service::PriceData* PriceReq::mutable_data(int index) {
+  // @@protoc_insertion_point(field_mutable:service.PriceReq.data)
+  return data_.Mutable(index);
+}
+inline ::service::PriceData* PriceReq::add_data() {
+  // @@protoc_insertion_point(field_add:service.PriceReq.data)
+  return data_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::service::PriceData >*
+PriceReq::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:service.PriceReq.data)
+  return &data_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::service::PriceData >&
+PriceReq::data() const {
+  // @@protoc_insertion_point(field_list:service.PriceReq.data)
+  return data_;
+}
+
+// -------------------------------------------------------------------
+
+// PriceData
+
+// string Symbol = 1;
+inline void PriceData::clear_symbol() {
+  symbol_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline const ::std::string& PriceData::symbol() const {
+  // @@protoc_insertion_point(field_get:service.PriceData.Symbol)
+  return symbol_.Get();
+}
+inline void PriceData::set_symbol(const ::std::string& value) {
+  
+  symbol_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set:service.PriceData.Symbol)
+}
+#if LANG_CXX11
+inline void PriceData::set_symbol(::std::string&& value) {
+  
+  symbol_.Set(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_rvalue:service.PriceData.Symbol)
+}
+#endif
+inline void PriceData::set_symbol(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  symbol_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_char:service.PriceData.Symbol)
+}
+inline void PriceData::set_symbol(const char* value,
+    size_t size) {
+  
+  symbol_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_pointer:service.PriceData.Symbol)
+}
+inline ::std::string* PriceData::mutable_symbol() {
+  
+  // @@protoc_insertion_point(field_mutable:service.PriceData.Symbol)
+  return symbol_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* PriceData::release_symbol() {
+  // @@protoc_insertion_point(field_release:service.PriceData.Symbol)
+  
+  return symbol_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline void PriceData::set_allocated_symbol(::std::string* symbol) {
+  if (symbol != NULL) {
+    
+  } else {
+    
+  }
+  symbol_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), symbol,
+      GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_allocated:service.PriceData.Symbol)
+}
+inline ::std::string* PriceData::unsafe_arena_release_symbol() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:service.PriceData.Symbol)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return symbol_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
+}
+inline void PriceData::unsafe_arena_set_allocated_symbol(
+    ::std::string* symbol) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (symbol != NULL) {
+    
+  } else {
+    
+  }
+  symbol_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      symbol, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:service.PriceData.Symbol)
+}
+
+// int64 Timestamp = 2;
+inline void PriceData::clear_timestamp() {
+  timestamp_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 PriceData::timestamp() const {
+  // @@protoc_insertion_point(field_get:service.PriceData.Timestamp)
+  return timestamp_;
+}
+inline void PriceData::set_timestamp(::google::protobuf::int64 value) {
+  
+  timestamp_ = value;
+  // @@protoc_insertion_point(field_set:service.PriceData.Timestamp)
+}
+
+// double Bid = 3;
+inline void PriceData::clear_bid() {
+  bid_ = 0;
+}
+inline double PriceData::bid() const {
+  // @@protoc_insertion_point(field_get:service.PriceData.Bid)
+  return bid_;
+}
+inline void PriceData::set_bid(double value) {
+  
+  bid_ = value;
+  // @@protoc_insertion_point(field_set:service.PriceData.Bid)
+}
+
+// double Ask = 4;
+inline void PriceData::clear_ask() {
+  ask_ = 0;
+}
+inline double PriceData::ask() const {
+  // @@protoc_insertion_point(field_get:service.PriceData.Ask)
+  return ask_;
+}
+inline void PriceData::set_ask(double value) {
+  
+  ask_ = value;
+  // @@protoc_insertion_point(field_set:service.PriceData.Ask)
+}
+
+// double Height = 5;
+inline void PriceData::clear_height() {
+  height_ = 0;
+}
+inline double PriceData::height() const {
+  // @@protoc_insertion_point(field_get:service.PriceData.Height)
+  return height_;
+}
+inline void PriceData::set_height(double value) {
+  
+  height_ = value;
+  // @@protoc_insertion_point(field_set:service.PriceData.Height)
+}
+
+// double Low = 6;
+inline void PriceData::clear_low() {
+  low_ = 0;
+}
+inline double PriceData::low() const {
+  // @@protoc_insertion_point(field_get:service.PriceData.Low)
+  return low_;
+}
+inline void PriceData::set_low(double value) {
+  
+  low_ = value;
+  // @@protoc_insertion_point(field_set:service.PriceData.Low)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

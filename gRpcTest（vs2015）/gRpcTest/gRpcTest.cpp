@@ -84,17 +84,19 @@
 //};
 
 int main(int argc, char** argv) {
+	
 	// Instantiate the client. It requires a channel, out of which the actual RPCs
 	// are created. This channel models a connection to an endpoint (in this case,
 	// localhost at port 50051). We indicate that the channel isn't authenticated
 	// (use of InsecureChannelCredentials()).
 	GreeterClient greeter(grpc::CreateChannel(
-		"localhost:50051", grpc::InsecureChannelCredentials()));
+		"192.168.3.8:19091", grpc::InsecureChannelCredentials()));
 	//std::string user("world");
 	//std::string reply = greeter.SayHello(user);
 	//std::string reply = greeter.Ping();
 	//std::cout << "Greeter received: " << reply << std::endl;
 
+	/*
 	ActivationReq req;
 	req.set_symbol("EURUSD");
 	req.set_activation(1);
@@ -113,7 +115,31 @@ int main(int argc, char** argv) {
 	req.set_time_stamp(1522652486);
 
 	greeter.Activation(req);
+	*/
+	ActivationReq request;
+	::service::ActivationData* pData = nullptr;
 
+	pData = request.add_data();
+	pData->set_symbol("EURUSD");
+	pData->set_activation(1);
+	pData->set_cmd(0);
+	pData->set_mt4id(3800);
+	pData->set_volume(5.00);
+	pData->set_ticket(4623051);
+	pData->set_opentime(1522652486);
+	pData->set_closetime(1522652486);
+	pData->set_openprice(1.23241);
+	pData->set_closeprice(1.23241);
+	pData->set_profit(-75.00);
+	pData->set_sl(0.00);
+	pData->set_tp(0.00);
+	pData->set_expiration(0.00);
+	pData->set_timestamp(1522652486);
+	pData->set_actiontype(0);
+
+	greeter.Activation(request);
+
+	/*
 	TradeClient trade_client(grpc::CreateChannel(
 		"localhost:50051", grpc::InsecureChannelCredentials()));
 
@@ -145,6 +171,7 @@ int main(int argc, char** argv) {
 	gpr_log(GPR_DEBUG, "format string %d", 3);
 	gpr_log(GPR_INFO, "hello world");
 	gpr_log(GPR_ERROR, "%d %s!!", 4, "server");
+	*/
 
 	system("pause");
 	return 0;

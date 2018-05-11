@@ -63,6 +63,7 @@ class GreeterServiceImpl final : public MT4Callback::Service {
 class TradeServiceImpl final : public ::mt4api::Trade::Service
 {
 public:
+	/*
 	// 开仓
 	::grpc::Status Open(::grpc::ServerContext* context, const ::mt4api::TradeOpenReq* request, ::mt4api::TradeOpenResp* response) override
 	{
@@ -132,6 +133,76 @@ public:
 	::grpc::Status Update(::grpc::ServerContext* context, const ::mt4api::TradeUpdateReq* request, ::mt4api::TradeUpdateResp* response) override
 	{
 		//Singleton<CMT4Manager>::GetInstance()->HandleModifyOrder(request, response);
+		return ::grpc::Status::OK;
+	}
+	*/
+	::grpc::Status Open(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::mt4api::TradeOpenResp, ::mt4api::TradeOpenReq>* stream)
+	{
+		::mt4api::TradeOpenReq request;
+		if(stream->Read(&request))
+		{
+			bool bRet = false;
+			int RetCode = -1;
+
+			std::string Symbol = request.symbol();
+			int MT4ID = request.mt4id();
+			int CMD = request.cmd();
+			int Volume = request.volume();
+			double OpenPrice = request.openprice();
+			double SL = request.sl();
+			double TP = request.tp();
+
+			double dbMarketOpenPrice = OpenPrice;
+
+			int Ticket = 0;
+			__time32_t OpenTime = 0;
+			std::string comment = "message";
+
+			//auto ret = m_ThreadPool.commit(std::bind(&CMT4Manager::OpenOrder, this,
+			//	CMD, MT4ID, Symbol, Volume, dbMarketOpenPrice, SL, TP,
+			//	std::ref(Ticket), std::ref(OpenTime), std::ref(OpenPrice), std::ref(comment), std::ref(RetCode)));
+
+			std::function<bool(int& nCMD, int& nOrderBy, std::string& strSymbol, int&  nVolume, double& fMarketOpenPrice, double& fSL, double& fTP,
+				int& nOrderID, __time32_t& nOpenTime, double& fOpenPrice, std::string& strComment, int &error_code)>
+				fun = std::bind(OpenOrder,
+					std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7,
+					std::placeholders::_8, std::placeholders::_9, std::placeholders::_10, std::placeholders::_11, std::placeholders::_12);
+
+			auto ret = fun(CMD, MT4ID, Symbol, Volume, dbMarketOpenPrice, SL, TP,
+				std::ref(Ticket), std::ref(OpenTime), std::ref(OpenPrice), std::ref(comment), std::ref(RetCode));
+
+			::mt4api::TradeOpenResp response;
+			google::protobuf::Arena arena;
+			if (ret)
+			{
+				bRet = true;
+				::mt4api::TradeOpenData* data = google::protobuf::Arena::CreateMessage<::mt4api::TradeOpenData>(&arena);
+				data->set_symbol(Symbol);
+				data->set_mt4id(MT4ID);
+				data->set_cmd(CMD);
+				data->set_volume(Volume);
+				data->set_ticket(Ticket);
+				data->set_opentime(OpenTime);
+				data->set_openprice(OpenPrice);
+				data->set_sl(SL);
+				data->set_tp(TP);
+
+				response.set_allocated_data(data);
+			}
+
+			response.set_code(RetCode);
+			stream->Write(response);
+		}
+		return ::grpc::Status::OK;
+	}
+		// 平仓
+	::grpc::Status Close(::grpc::ServerContext* context, const ::mt4api::TradeCloseReq* request, ::mt4api::TradeCloseResp* response)
+	{
+		return ::grpc::Status::OK;
+	}
+		// 更新订单
+	::grpc::Status Update(::grpc::ServerContext* context, const ::mt4api::TradeUpdateReq* request, ::mt4api::TradeUpdateResp* response)
+	{
 		return ::grpc::Status::OK;
 	}
 };

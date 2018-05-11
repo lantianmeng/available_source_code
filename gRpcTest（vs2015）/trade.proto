@@ -7,7 +7,7 @@ option cc_enable_arenas = true;
 //交易
 service Trade {
     //开仓
-    rpc Open (TradeOpenReq) returns (TradeOpenResp) {}
+    rpc Open (stream TradeOpenReq) returns (stream TradeOpenResp) {}
     //平仓
     rpc Close (TradeCloseReq) returns (TradeCloseResp) {}
     //更新订单

@@ -427,15 +427,15 @@ void AddDescriptorsImpl() {
       "Price\030\006 \001(\001\022\n\n\002SL\030\007 \001(\001\022\n\n\002TP\030\010 \001(\001\"F\n\017T"
       "radeUpdateResp\022\014\n\004Code\030\001 \001(\005\022%\n\004Data\030\002 \001"
       "(\0132\027.mt4api.TradeUpdateData\")\n\017TradeUpda"
-      "teData\022\n\n\002SL\030\001 \001(\001\022\n\n\002TP\030\002 \001(\0012\265\001\n\005Trade"
-      "\0225\n\004Open\022\024.mt4api.TradeOpenReq\032\025.mt4api."
-      "TradeOpenResp\"\000\0228\n\005Close\022\025.mt4api.TradeC"
-      "loseReq\032\026.mt4api.TradeCloseResp\"\000\022;\n\006Upd"
-      "ate\022\026.mt4api.TradeUpdateReq\032\027.mt4api.Tra"
-      "deUpdateResp\"\000B\003\370\001\001b\006proto3"
+      "teData\022\n\n\002SL\030\001 \001(\001\022\n\n\002TP\030\002 \001(\0012\271\001\n\005Trade"
+      "\0229\n\004Open\022\024.mt4api.TradeOpenReq\032\025.mt4api."
+      "TradeOpenResp\"\000(\0010\001\0228\n\005Close\022\025.mt4api.Tr"
+      "adeCloseReq\032\026.mt4api.TradeCloseResp\"\000\022;\n"
+      "\006Update\022\026.mt4api.TradeUpdateReq\032\027.mt4api"
+      ".TradeUpdateResp\"\000B\003\370\001\001b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1187);
+      descriptor, 1191);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "trade.proto", &protobuf_RegisterTypes);
 }
