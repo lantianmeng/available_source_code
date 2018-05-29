@@ -11,6 +11,7 @@
     <ClInclude Include="Multiton.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="websocket_server.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="learn_boost.cpp">

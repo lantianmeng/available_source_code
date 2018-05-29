@@ -85,6 +85,10 @@
     <IncludePath>E:\Tool\websocketpp-master;E:\Tool\boost_1_63_0;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>E:\Tool\boost_1_63_0\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>E:\Tool\websocketpp-master;E:\Tool\boost_1_63_0;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>E:\Tool\boost_1_63_0\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
@@ -259,6 +263,7 @@
     <ClInclude Include="Log.h" />
     <ClInclude Include="Multiton.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="websocket_server.h" />
   </ItemGroup>
   <ItemGroup>
