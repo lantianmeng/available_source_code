@@ -36,7 +36,7 @@ void on_message(client* c, websocketpp::connection_hdl hdl, message_ptr msg) {
 class Client
 {
 public:
-	Client(const std::string & ip_, const int port_):ip(ip_), port(port_) {}
+	Client(const std::string & uri_):uri(uri_) {}
 	virtual ~Client() {}
 
 	bool Connect()
@@ -52,8 +52,6 @@ public:
 			// Register our message handler
 			c.set_message_handler(bind(&on_message, &c, ::_1, ::_2));
 
-			//std::string uri = "ws://localhost:9002";
-			std::string uri = "ws://" + ip + ":" + std::to_string(port); 
 			websocketpp::lib::error_code ec;
 			client::connection_ptr con = c.get_connection(uri, ec);
 			if (ec) {
@@ -76,7 +74,6 @@ public:
 		}
 	}
 private:
-	std::string ip;
-	int port;
+	std::string uri;
 	client c;
 };

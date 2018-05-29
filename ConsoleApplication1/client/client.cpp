@@ -8,7 +8,9 @@
 
 int main()
 {
-	Client websocket_client("127.0.0.1", 19201);
+	//std::string uri = "ws://localhost:19201";
+	std::string uri = "ws://127.0.0.1:19201";
+	Client websocket_client(uri);
 	if (!websocket_client.Connect())
 	{
 		std::cout << "connect fail";
