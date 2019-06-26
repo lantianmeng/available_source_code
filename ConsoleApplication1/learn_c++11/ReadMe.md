@@ -1,5 +1,5 @@
 1. Timer.h 是c++11实现的定时器
-测试代码如下：
+<br>测试代码如下：
 ```
 	Timer t;
 	t.StartTimer(1000, std::bind(EchoFunc, "hello c++11!"));
