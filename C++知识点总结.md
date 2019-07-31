@@ -107,7 +107,7 @@ public:
     	string defect_info;
     };
     
-    std::vector < flag_data_unit > all_data;
+        std::vector < flag_data_unit > all_data;
 
 	//按照priority排序(从小到大)，相同的priority则按type排序(array/cell/cf/sl)
 	std::sort(all_data.begin(), all_data.end(), [](flag_data_unit & obj1, flag_data_unit & obj2)
@@ -125,7 +125,7 @@ public:
 	
 	//这里要注意，lamada表达式对参数flag的捕获
 	std::vector < flag_data_unit >::iterator flag_data_all::GetDataUnit(int flag)
-    {
+        {
 	   std::vector < flag_data_unit >::iterator it = std::find_if(all_data.begin(), all_data.end(), [flag](flag_data_unit & obj){ return obj.GetFlag() == flag; });
 	   return it;
 	}
@@ -174,7 +174,7 @@ flag_data_all::FlagDataIterator flag_data_all::GetDataUnit(int flag)
         }
     */
     
-	for(vector<int>::iterator it=arr.begin(); it!=arr.end(); )
+    for(vector<int>::iterator it=arr.begin(); it!=arr.end(); )
     {
         if(* it == 8)
         {
@@ -184,7 +184,7 @@ flag_data_all::FlagDataIterator flag_data_all::GetDataUnit(int flag)
         {
             ++it;
         }
-    }
+   }
 ```
 
 - vector，获取某个元素对应的迭代器，对应的下标
@@ -217,6 +217,8 @@ int rank_data_all::GetIndex(const string& rank)
 }
 
 ```
+6. c++11 的lamada表达式
+[C++11 Lambda表达汇总总结](https://www.cnblogs.com/smiler/p/4095723.html)
 
 # C++可变参数
 1. 可变参数宏va_start/va_arg/va_end
