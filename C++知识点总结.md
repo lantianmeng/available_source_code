@@ -520,6 +520,14 @@ ftp断点续传功能
   Activity与Action
   分叉与汇合
   <br>[活动图实例](https://www.cnblogs.com/xiaolongbao-lzh/p/4591953.html) 前面部分与上一帖有重复，后面的几个例子是很有借鉴价值的
- 
+
+# 架构设计相关
+1. 一些DDD和应用架构的基础知识
+<br>[阿里高级技术专家方法论：如何写复杂业务代码？](https://mp.weixin.qq.com/s/pdjlf9I73sXDr30t-5KewA)
+<br>[在单体应用的一些DDD实践经验](https://www.cnblogs.com/mq0036/p/9405781.html)
+
+《领域驱动设计》
+《架构整洁之道》
+
 # 一些信息
 <br>[写博客的收获和总结](https://juejin.im/post/5c02b2bce51d4533253f2f43)   此前六大设计原则也是该作者写的
