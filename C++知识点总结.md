@@ -291,6 +291,7 @@ void test_stage_data(int type, ...)
 
 
 # C++11 智能指针
+[窥见C++11智能指针](https://cloud.tencent.com/developer/article/1486285)  腾讯技术工程官方号的专栏文章，写的详细而又深入浅出
 - shared_ptr 与 weak_ptr
 <br>[shared_ptr的实例讲解](https://www.cnblogs.com/shengjianjun/p/3691928.html)
   - shared_ptr 对象初始化（new，reset，make_shared） **new与make_shared的区别**
