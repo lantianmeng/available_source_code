@@ -131,6 +131,9 @@ public:
 	}
 	
 ```
+- 标准库算法中的谓词(predicate)
+[C++ - 算法(algorithm) 的 谓词(predicate) 详解](https://blog.csdn.net/caroline_wendy/article/details/15378055)
+<br>这里列举的例子，以及后面vector中使用标准库算法，谓词（predicate）都是使用的lamada表达式，也可以使用上文中的描述的其他方法
 
 4. 类型别名using与typedef
 - STL中的容器使用类型别名以及迭代器别名
