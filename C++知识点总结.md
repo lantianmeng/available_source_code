@@ -217,6 +217,34 @@ int rank_data_all::GetIndex(const string& rank)
 }
 
 ```
+- vector，根据某个条件或数据，获取所有满足条件的子vector
+```
+#include <algorithm>
+#include <functional>
+
+struct tt_data
+{
+	tt_data(){ age = 0; name = ""; }
+	tt_data(int age_, string name_) :age(age_), name(name_){}
+
+	int age;
+	string name;
+};
+
+using tt_data_vec = vector < tt_data > ;
+
+tt_data_vec GetChildVectorBy(tt_data_vec src_data, int a)
+{
+    //获取满足条件的个数
+	int ii_num = std::count_if(src_data.begin(), src_data.end(), [a](tt_data tt){return tt.age == a; });
+
+	tt_data_vec temp(ii_num);
+	std::copy_if(src_data.begin(), src_data.end(), temp.begin(), [a](tt_data tt){return tt.age == a; });
+	return temp;
+}
+
+```
+
 6. c++11 的lamada表达式
 [C++11 Lambda表达汇总总结](https://www.cnblogs.com/smiler/p/4095723.html)
 
