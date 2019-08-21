@@ -10,7 +10,9 @@
   - 点击使用仅限本机进行调试，就可以方便的看到源代码进行调试了。
 - 内存泄漏   [调试以及解决方法](https://www.cnblogs.com/skynet/archive/2011/02/20/1959162.html)
 <br>windows  _CrtDumpMemoryLeaks() , linux  valgrind命令
-  
+- 查看exe依赖的库文件，查看lib和dll中的符号
+<br>[VS自带工具：dumpbin的使用查看Lib,dll等](https://blog.csdn.net/sinat_29890433/article/details/79556124)
+
 # 基础知识点
 1. c++ 两个类需要互相引用，导致头文件互相包含
   - 某一个类的头文件中对引用的类定义指针，然后对引用的类进行声明；cpp文件中包含引用类的路径
