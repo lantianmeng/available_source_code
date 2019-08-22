@@ -325,17 +325,8 @@ void test_stage_data(int type, ...)
 
 # C++11 智能指针
 [窥见C++11智能指针](https://cloud.tencent.com/developer/article/1486285)  腾讯技术工程官方号的专栏文章，写的详细而又深入浅出
-- shared_ptr 与 weak_ptr
-<br>[shared_ptr的实例讲解](https://www.cnblogs.com/shengjianjun/p/3691928.html)
-  - shared_ptr 对象初始化（new，reset，make_shared） **new与make_shared的区别**
-  - weak_ptr的使用场景
-  - shared_ptr作为函数参数的情况
-    - 作为参数时给默认值  ```std::shared_ptr<A> data = nullptr```
-	- shared_ptr作为函数形参时，要看成对象。如果用来返回值时，要加引用符号&
-	- 作为局部变量 
-	<br>[shared_ptr作为局部变量](https://www.cnblogs.com/kilen/p/7128600.html)  
-	<br>[shared_ptr使用注意点](https://blog.csdn.net/man_sion/article/details/77196766)
-- unique_ptr 独占所指向的对象, 同一时刻只能有一个 unique_ptr 指向给定对象
+
+<br>[自己总结的关于智能指针的用法](https://github.com/lantianmeng/available_source_code/blob/master/smart_point.md)
 
 # memory pool
 [开源代码](https://github.com/cacay/MemoryPool)
