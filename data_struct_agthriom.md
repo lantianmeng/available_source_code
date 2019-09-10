@@ -14,7 +14,7 @@ int index(char* s, char* t, int pos)
 
 	int i = pos;
 	int j = 0;
-	while (i <= s_len && j <= t_len)
+	while (i < s_len && j < t_len)
 	{
 		if (s[i] == t[j])
 		{
@@ -28,7 +28,7 @@ int index(char* s, char* t, int pos)
 		}
 	}
 
-	if (j >= t_len)
+	if (j == t_len)
 	{
 		return i - t_len;
 	}
