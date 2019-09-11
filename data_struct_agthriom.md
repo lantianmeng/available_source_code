@@ -38,3 +38,60 @@ int index(char* s, char* t, int pos)
 
 ```
 2. KMP模式匹配算法
+```
+void getNext(char* t, int* next)
+{
+	int len_t = strlen(t);
+	int i = 0;
+	int j = -1;
+
+	next[0] = -1; //字符串t的下标为0时，next[0]为-1
+	while (i < len_t)
+	{
+		if (j == -1 || t[i] == t[j])
+		{
+			++i;
+			++j;
+			next[i] = j;
+		}
+		else
+		{
+			j = next[j];
+		}
+	}
+}
+
+//()
+int index_kmp(char* s, char* t, int pos)
+{
+	int len_s = strlen(s);
+	int len_t = strlen(t);
+	int i = 0;
+	int j = 0;
+	int next[1024]; //next 数组, t串的最大字符串长度为1024
+	getNext(t, next);
+	while (i < len_s && j < len_t)
+	{
+		if (j == 0 || s[i] == t[j])
+		{
+			++i;
+			++j;
+		}
+		else
+		{
+			//i不回朔到0 j从next数据中获取
+			j = next[j];
+		}
+	}
+
+	if (j == len_t)
+	{
+		return i - j;
+	}
+	else
+	{
+		return 0;
+	}
+}
+```
+<br>注意点如下:
