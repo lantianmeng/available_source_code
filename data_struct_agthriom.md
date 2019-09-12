@@ -39,7 +39,8 @@ int index(char* s, char* t, int pos)
 ```
 2. KMP模式匹配算法
 ```
-void getNext(char* t, int* next)
+//bImprove为true时，表示使用的是改进的kmp模式匹配算法
+void getNext(char* t, int* next, bool bImprove = false)
 {
 	int len_t = strlen(t);
 	int i = 0;
@@ -52,7 +53,24 @@ void getNext(char* t, int* next)
 		{
 			++i;
 			++j;
-			next[i] = j;
+			
+			if (!bImprove)
+			{
+				next[i] = j;
+			}
+			else
+			{
+				//kmp改善后的算法
+				if (t[i] != t[j])
+				{
+					next[i] = j;
+				}
+				else
+				{
+				        //这里需注意，要避免缓存的位置为-1从而导致崩溃
+					next[i] = next[j]==-1 ? 0 : next[j];
+				}
+			}
 		}
 		else
 		{
@@ -62,14 +80,14 @@ void getNext(char* t, int* next)
 }
 
 //()
-int index_kmp(char* s, char* t, int pos)
+int index_kmp(char* s, char* t, int pos, bool bImprove = false)
 {
 	int len_s = strlen(s);
 	int len_t = strlen(t);
 	int i = 0;
 	int j = 0;
 	int next[1024]; //next 数组, t串的最大字符串长度为1024
-	getNext(t, next);
+	getNext(t, next, bImprove);
 	while (i < len_s && j < len_t)
 	{
 		if (j == 0 || s[i] == t[j])
@@ -102,3 +120,6 @@ int index_kmp(char* s, char* t, int pos)
 <br>代码实现中需注意 j == 0 的判断
 
 - 朴素模式匹配算法与kmp模式匹配算法的时间复杂度分析
+
+- 改进的kmp模式匹配算法
+<br>需注意，取值为-1时需手动改为0
