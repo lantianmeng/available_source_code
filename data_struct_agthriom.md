@@ -68,7 +68,7 @@ void getNext(char* t, int* next, bool bImprove = false)
 				else
 				{
 				        //这里需注意，要避免缓存的位置为-1从而导致崩溃
-					next[i] = next[j]==-1 ? 0 : next[j];
+					next[i] = next[j] == -1 ? 0 : next[j];
 				}
 			}
 		}
@@ -108,7 +108,7 @@ int index_kmp(char* s, char* t, int pos, bool bImprove = false)
 	}
 	else
 	{
-		return 0;
+		return -1;
 	}
 }
 ```
