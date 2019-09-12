@@ -68,7 +68,7 @@ void getNext(char* t, int* next, bool bImprove = false)
 				else
 				{
 				        //这里需注意，要避免缓存的位置为-1从而导致崩溃
-					next[i] = next[j] == -1 ? 0 : next[j];
+					next[i] = next[j];
 				}
 			}
 		}
@@ -90,7 +90,7 @@ int index_kmp(char* s, char* t, int pos, bool bImprove = false)
 	getNext(t, next, bImprove);
 	while (i < len_s && j < len_t)
 	{
-		if (j == 0 || s[i] == t[j])
+		if (j == -1 || s[i] == t[j])
 		{
 			++i;
 			++j;
@@ -117,9 +117,9 @@ int index_kmp(char* s, char* t, int pos, bool bImprove = false)
 <br>代码实现中，需注意next[0]=-1,即第一个字符对应回朔位置为-1
 
 - kmp模式匹配算法
-<br>代码实现中需注意 j == 0 的判断
+<br>代码实现中需注意 j == -1 的判断
 
 - 朴素模式匹配算法与kmp模式匹配算法的时间复杂度分析
 
 - 改进的kmp模式匹配算法
-<br>需注意，取值为-1时需手动改为0
+<br>需注意，赋值的条件
