@@ -340,23 +340,77 @@ void test_stage_data(int type, ...)
 1. std::future / std::async / std::promise / std::packaged_task
 - future 的get方法会阻塞，但可以通过wait_for等方法获取状态（可以设置超时，避免线程一直阻塞）
 ```
-	std::future<int> fu1 = pp_t.get_future();
-	std::chrono::milliseconds span(6000);
-	std::future_status status;
-	do
-	{
-		status = fu1.wait_for(span);
-	} while (status == std::future_status::deferred);
+#include <future>
 
-	if (status == std::future_status::timeout)
-	{
-		std::cout << "timeout " << t_i << std::endl;
-	}
-	else if (status == std::future_status::ready)
-	{
-		std::cout << "ready " << t_i << std::endl;
-	}
+class Test_PackagedTask
+{
+public:
+    Test_PackagedTask()
+    {
+		t_i = 0;
+		//tsk(task3);
+    }
+
+    void task3()//模拟接收tems消息
+    {
+		t_i += 2;
+		std::cout << "task 3 " << t_i << std::endl;
+
+		pp_t.set_value(t_i);
+    }
+    
+    void task4()
+    {
+    	std::cout << "task 4" << std::endl;
+    
+    	//std::this_thread::sleep_for(std::chrono::seconds(5));
+    	std::this_thread::sleep_for(std::chrono::seconds(8));
+    
+    	task3();
+    }
+    
+    void task2()
+    {
+    	++t_i;
+    	std::cout << "task 2 " << t_i << std::endl;
+    
+    }
+    
+    void task1()//模拟接收plc信号
+    {
+    	std::cout << "task 1" << std::endl;
+    
+    	task2(); //模拟给tems发消息
+    
+    	//模拟等待tems回消息
+    	std::future<int> fu1 = pp_t.get_future();
+    	std::chrono::milliseconds span(6000);
+    	std::future_status status;
+    	do
+    	{
+    		status = fu1.wait_for(span);
+    	} while (status == std::future_status::deferred);
+    
+    	if (status == std::future_status::timeout)
+    	{
+    		std::cout << "timeout " << t_i << std::endl;
+    	}
+    	else if (status == std::future_status::ready)
+    	{
+    		std::cout << "ready " << t_i << std::endl;
+    	}
+    }
+
+private:
+	int t_i = 0;
+	//std::packaged_task<void()> tsk;
+
+	std::promise<int> pp_t;
+	
+};
 ```
+<br>[c++异步代码同步化](https://blog.csdn.net/jiange_zh/article/details/78162434)    **封装的思路值得学习**
+
 - packaged_task
 <br>[packaged_task 包装的是异步操作，即从异步操作中获取值](https://www.cnblogs.com/qicosmos/p/3534211.html)
 <br>[作者一个项目经验的总结，里面提到的框架的设计，需要注意](https://www.cnblogs.com/qicosmos/p/3492802.html)
