@@ -59,6 +59,7 @@ void CSignal::on_test1_clicked()
     }
 	```
 	+ 带参数时，参数的类型，qt识别不了该对象（在vs的“输出”窗口，会出现QMetaObject的报错 ）
+	<br>[qRegisterMetaType的使用](https://blog.csdn.net/wadfji/article/details/54406767)
 	```
 	
 	//在CPP文件的开头声明std::string类型
@@ -71,7 +72,7 @@ void CSignal::on_test1_clicked()
 		//正确的方式，可以用QString
 		connect(this, SIGNAL(update_msg(const QString&)), this, SLOT(on_update_msg(const QString&))); //这是正确的方式
 		
-		//可以用qRegisterMetaType来注册std::string类型  [qRegisterMetaType的使用](https://blog.csdn.net/wadfji/article/details/54406767)
+		//可以用qRegisterMetaType来注册std::string类型  
 		qRegisterMetaType<std::string>();
 	    connect(this, SIGNAL(update_msg(const std::string&)), this, SLOT(on_update_msg(const std::string&)));
 		
