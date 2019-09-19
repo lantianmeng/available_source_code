@@ -38,6 +38,8 @@ void CSignal::on_test1_clicked()
 - 使用connect需要注意，signals/slots中带参数时，易出问题导致槽函数不响应
     + 带参数时，携带形参的名字
 	<br>如：connect(this, SIGNAL(update_msg(const QString& msg)), this, SLOT(on_update_msg(const QString& msg)));  中的“msg”，会导致槽函数不响应
+    + 带参数时，参数的类型，qt识别不了该对象（在vs的“输出”窗口，会出现QMetaObject的报错 ）
+	<br>[qRegisterMetaType的使用](https://blog.csdn.net/wadfji/article/details/54406767)
 ```
 	class CSignal : public QWidget
     {
@@ -63,8 +65,7 @@ void CSignal::on_test1_clicked()
 	ui.showMsg->setText(msg.c_str());//更新msg到界面的showMsg label上面
     }
 ```
-    + 带参数时，参数的类型，qt识别不了该对象（在vs的“输出”窗口，会出现QMetaObject的报错 ）
-	<br>[qRegisterMetaType的使用](https://blog.csdn.net/wadfji/article/details/54406767)
+   
 ```
 	
 	//在CPP文件的开头声明std::string类型
