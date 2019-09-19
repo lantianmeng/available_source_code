@@ -54,7 +54,7 @@ void CSignal::on_test1_clicked()
 	
 	void CSignal::Init()
     {
-    	//connect(this, SIGNAL(update_msg(const QString& msg)), this, SLOT(on_update_msg(const QString& msg)));//** 这是错误的方式**
+    	//connect(this, SIGNAL(update_msg(const QString& msg)), this, SLOT(on_update_msg(const QString& msg)));//**这是错误的方式**
 		connect(this, SIGNAL(update_msg(const QString&)), this, SLOT(on_update_msg(const QString&))); //这是正确的方式
     }
 	```
@@ -67,7 +67,7 @@ void CSignal::on_test1_clicked()
 
 	void CSignal::Init()
     {
-    	connect(this, SIGNAL(update_msg(const std::string& msg)), this, SLOT(on_update_msg(const std::string& msg)));//** 这是错误的方式**，qt识别不了std::string类型
+    	connect(this, SIGNAL(update_msg(const std::string& msg)), this, SLOT(on_update_msg(const std::string& msg)));//**这是错误的方式**，qt识别不了std::string类型
 		//正确的方式，可以用QString
 		connect(this, SIGNAL(update_msg(const QString&)), this, SLOT(on_update_msg(const QString&))); //这是正确的方式
 		
