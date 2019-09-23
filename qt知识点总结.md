@@ -91,6 +91,13 @@ void CSignal::on_test1_clicked()
     }
 
 ```
+- Qt5中，connect的新用法:lamada表达式和指向成员函数的指针
+[Qt的信号槽机制介绍(含Qt5与Qt4的差异对比)](https://blog.csdn.net/qq78442761/article/details/80653472)
+```
+	//qt5 槽函数的新方式
+	connect(ui.cbBold, &QCheckBox::stateChanged, [=](int nState){m_bCheckedBold = nState == Qt::CheckState::Checked ? true : false;});
+	connect(ui.cbBold, &QCheckBox::stateChanged, this, &CSignal::on_Bold_update_state);
+```
 
 2. 子线程（回调函数）需要更新数据到界面
 - 直接调用控件的方法，更新数据   
