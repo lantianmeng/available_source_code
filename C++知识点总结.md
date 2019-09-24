@@ -9,7 +9,35 @@
   - 把pdb文件和exe文件放到进程名称所在的目录下面，如果开发环境机器上没有这个目录，那么就新建这个目录，否则无法加载符号，调试只能看汇编代码。
   - 点击使用仅限本机进行调试，就可以方便的看到源代码进行调试了。
 - 内存泄漏   [调试以及解决方法](https://www.cnblogs.com/skynet/archive/2011/02/20/1959162.html)
-<br>windows  _CrtDumpMemoryLeaks() , linux  valgrind命令
+<br>windows  
+- 方法一：_CrtDumpMemoryLeaks()  这个方法要放在**main函数退出之前**
+```
+int main(int argc, char *argv[])
+{
+	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	QApplication a(argc, argv);
+	EDCDemo w;
+	w.show();
+
+	_CrtDumpMemoryLeaks();
+
+	return a.exec();
+}
+```
+- 方法二：_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); 这个方法要放在**main函数的入口处**
+```
+int main(int argc, char *argv[])
+{
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	QApplication a(argc, argv);
+	EDCDemo w;
+	w.show();
+	return a.exec();
+}
+```
+<br>linux  valgrind命令
 - 查看exe依赖的库文件，查看lib和dll中的符号
 <br>[VS自带工具：dumpbin的使用查看Lib,dll等](https://blog.csdn.net/sinat_29890433/article/details/79556124)
 
