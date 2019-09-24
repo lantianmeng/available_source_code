@@ -148,6 +148,42 @@ void EDCDemo::on_update_msg(const QString& msg)
 }
 
 ```
+3. 布局管理器
+<br>[使用qt designer进行布局](https://blog.csdn.net/jxwzh/article/details/81673223)，自己建一个工程，尝试一个各种布局
+<br>使用布局后，就是一个整体来移动和改变大小。如果要单独改变某个控件的大小，需要先break layout(qt designer工具栏/快捷键 ctrl+0)
+- Splitter   
+<br>选中所需的控件，点击工具栏上的H Splitter/V Splitter
+<br>使用QSplitter，通过代码去进行布局
+- Grid Layout
+
+- 各个布局方式，可以同时使用，进行嵌套布局
+
+- 使用代码进行布局
+<br>[内容、间距和QSpaceItem](https://blog.csdn.net/hyongilfmmm/article/details/83028903)
+```
+	cbBold = new QCheckBox("bold");
+	cbItalic = new QCheckBox("italic");
+	lyStyle = new QHBoxLayout;
+	lyStyle->addWidget(cbBold);
+	lyStyle->addWidget(cbItalic); 
+	
+	rbBlack = new QRadioButton("black");
+	rbRed = new QRadioButton("red");
+	lyColor = new QVBoxLayout;
+	lyColor->addWidget(rbBlack);
+	lyColor->addWidget(rbRed);
+
+	inputText = new QPlainTextEdit("hello\nwelcome");
+	
+    QVBoxLayout * main_ly = new QVBoxLayout;
+	main_ly->addLayout(lyStyle);
+	main_ly->addSpacing(50);  //添加一个间距
+	main_ly->addLayout(lyColor);
+	main_ly->addSpacing(100);
+	main_ly->addWidget(inputText);
+	setLayout(main_ly);
+```
+
 # 问题点
 1. 槽函数不响应
 - VS的工程中添加class，继承Qt类。默认没有Q_OBJECT宏。也就无法使用signals。
