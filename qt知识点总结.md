@@ -190,7 +190,17 @@ void EDCDemo::on_update_msg(const QString& msg)
 	main_ly->addWidget(inputText);
 	setLayout(main_ly);
 ```
-
+4. QT new控件，但不delete，为什么没有内存泄露
+<br>[从 Qt 的 delete 说开来](https://blog.csdn.net/dbzhang800/article/details/6300025)
+- 以下情况new之后，不需delete
+  + QObject及其派生类的对象，如果其parent非0，那么其parent析构时会析构该对象
+  + 有些类的对象可以接收设置一些特别的标记
+  <br>QWidget及其派生类的对象，可以设置 Qt::WA_DeleteOnClose 标志位(当close时会析构该对象)
+  <br>QAbstractAnimation派生类的对象，可以设置 QAbstractAnimation::DeleteWhenStopped
+  <br>QRunnable::setAutoDelete()
+  <br>MediaSource::setAutoDelete()
+- 理解QObject管理父子关系 ** 主要是上述连接**
+  
 # 问题点
 1. 槽函数不响应
 - VS的工程中添加class，继承Qt类。默认没有Q_OBJECT宏。也就无法使用signals。
