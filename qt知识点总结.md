@@ -192,6 +192,9 @@ void EDCDemo::on_update_msg(const QString& msg)
 	main_ly->addWidget(inputText);
 	setLayout(main_ly);
 ```
+- QStackedLayout  可以用于多个页面进行切换
+<br>[QStackedLayout示列](https://blog.csdn.net/naibozhuan3744/article/details/80728783)  可用于切换菜单的界面，如pc版的微信，即可使用这个版本
+
 4. QT new控件，但不delete，为什么没有内存泄露
 <br>[从 Qt 的 delete 说开来](https://blog.csdn.net/dbzhang800/article/details/6300025)
 - 以下情况new之后，不需delete
@@ -202,7 +205,7 @@ void EDCDemo::on_update_msg(const QString& msg)
   <br>QRunnable::setAutoDelete()
   <br>MediaSource::setAutoDelete()
 - 理解QObject管理父子关系 ** 主要是上述连接**
-  
+  <br>如果没有指定parent，则需要delete。（指定parent后，可能会影响对某些事件的捕获。因为事件被父窗口捕获后，不会传递到子窗口，导致不会响应）
 # 问题点
 1. 槽函数不响应
 - VS的工程中添加class，继承Qt类。默认没有Q_OBJECT宏。也就无法使用signals。
