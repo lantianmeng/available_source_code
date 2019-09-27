@@ -210,3 +210,13 @@ void EDCDemo::on_update_msg(const QString& msg)
 <br>error C1083: 无法打开源文件: “GeneratedFiles\Debug\moc_SettingWidget.cpp”: No such file or directory	
 <br>清理了重新生成也不行。
 <br>**解决方法**：随便修改一下目标类的.h文件，目的是让该.h文件变成(xxx.h*)。然后保存，再 生成/编译即可
+2. Qt QComboBox之无法将参数 2 从“overloaded-function”转换为“const char *”上下文不允许消除重载函数的歧义
+- 原因
+<br>QComboBox 有些信号是重载的，如currentIndexChanged信号，其参数有int型和QString类型这2种
+<br>使用Qt5风格的connect连接信号和槽时（```connect(ui.cb_City, &QComboBox::currentIndexChanged, this, [=](int index){});```），就会出现上述错误
+- 解决方法如下：
+<br>[可以参考的解决方法](https://blog.csdn.net/sz76211822/article/details/98586105)
+<br>信号的指针类型进行强制转换：
+```
+connect(ui.cb_City, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, [=](int index){});
+```
