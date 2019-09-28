@@ -204,6 +204,19 @@ void EDCDemo::on_update_msg(const QString& msg)
   <br>QAbstractAnimation派生类的对象，可以设置 QAbstractAnimation::DeleteWhenStopped
   <br>QRunnable::setAutoDelete()
   <br>MediaSource::setAutoDelete()
+  ```
+    QLabel *boatIcon = new QLabel(this);
+    boatIcon->setPixmap(QPixmap(":/images/boat.png"));
+    boatIcon->move(10, 10);
+    boatIcon->show();
+    boatIcon->setAttribute(Qt::WA_DeleteOnClose);
+
+    QLabel *carIcon = new QLabel(this);
+    carIcon->setPixmap(QPixmap(":/images/car.png"));
+    carIcon->move(100, 10);
+    carIcon->show();
+    carIcon->setAttribute(Qt::WA_DeleteOnClose);
+  ```
 - 理解QObject管理父子关系 ** 主要是上述连接**
   <br>如果没有指定parent，则需要delete。（指定parent后，可能会影响对某些事件的捕获。因为事件被父窗口捕获后，不会传递到子窗口，导致不会响应）
 # 问题点
