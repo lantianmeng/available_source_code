@@ -197,28 +197,47 @@ void EDCDemo::on_update_msg(const QString& msg)
 
 4. QT new控件，但不delete，为什么没有内存泄露
 <br>[从 Qt 的 delete 说开来](https://blog.csdn.net/dbzhang800/article/details/6300025)
+<br>[WINDOWS下内存泄漏检测工具VLD(Visual Leak Detector)的使用](https://blog.csdn.net/xp178171640/article/details/80828530)  vld检测qt程序的内存泄漏
 - 以下情况new之后，不需delete
   + QObject及其派生类的对象，如果其parent非0，那么其parent析构时会析构该对象
-  + 有些类的对象可以接收设置一些特别的标记
+  + 有些类的对象可以接收设置一些特别的标记 [窗口接收close消息后自动释放资源](https://www.cnblogs.com/findumars/p/6201221.html)
   <br>QWidget及其派生类的对象，可以设置 Qt::WA_DeleteOnClose 标志位(当close时会析构该对象)
   <br>QAbstractAnimation派生类的对象，可以设置 QAbstractAnimation::DeleteWhenStopped
   <br>QRunnable::setAutoDelete()
   <br>MediaSource::setAutoDelete()
   ```
-    QLabel *boatIcon = new QLabel(this);
-    boatIcon->setPixmap(QPixmap(":/images/boat.png"));
-    boatIcon->move(10, 10);
-    boatIcon->show();
-    boatIcon->setAttribute(Qt::WA_DeleteOnClose);
+  class test_new :public QWidget
+{
+	QOBJECT_H
+public:
+	test_new()
+	{
+		//1. parent 指定this
+		//lable = new QLabel("hello",this);
+		lable = new QLabel("hello");
+		lable->setGeometry(0, 0, 100, 100);
+		lable->setAttribute(Qt::WA_DeleteOnClose);  //3. 这种方式还是有内存泄漏，因为Qt::WA_DeleteOnClose在窗口触发close消息时才有效
+		//lable->show();  //单独显示窗口，点击close后，上述标识才有效
+                
+		v = new VBoxLayout(this);  //4. 让V-layout作为子窗口，label添加到v-layout中即可
+		v.addWidget(label);
+		setLayout(v);
+		
+		setWindowTitle("test_new");
 
-    QLabel *carIcon = new QLabel(this);
-    carIcon->setPixmap(QPixmap(":/images/car.png"));
-    carIcon->move(100, 10);
-    carIcon->show();
-    carIcon->setAttribute(Qt::WA_DeleteOnClose);
+		//connect(this, &QWidget::closeEvent, [=] {delete lable; });
+	}
+	//2. 析构函数中删除
+	//~test_new(){ delete lable; }
+	//~test_new(){ lable->close(); }
+private:
+	QLabel *lable;
+	QVBoxLayout v;
+};
   ```
 - 理解QObject管理父子关系 ** 主要是上述连接**
   <br>如果没有指定parent，则需要delete。（指定parent后，可能会影响对某些事件的捕获。因为事件被父窗口捕获后，不会传递到子窗口，导致不会响应）
+  <br>窗口的父子关系理顺，才能考虑是使用传入parent，还是设置Qt::WA_DeleteOnClose属性
 # 问题点
 1. 槽函数不响应
 - VS的工程中添加class，继承Qt类。默认没有Q_OBJECT宏。也就无法使用signals。
