@@ -207,9 +207,9 @@ void EDCDemo::on_update_msg(const QString& msg)
   <br>MediaSource::setAutoDelete()
   ```
   class test_new :public QWidget
-{
+  {
 	QOBJECT_H
-public:
+   public:
 	test_new()
 	{
 		//1. parent 指定this
@@ -230,10 +230,10 @@ public:
 	//2. 析构函数中删除
 	//~test_new(){ delete lable; }
 	//~test_new(){ lable->close(); }
-private:
+   private:
 	QLabel *lable;
 	QVBoxLayout v;
-};
+  };
   ```
 - 理解QObject管理父子关系 ** 主要是上述连接**
   <br>如果没有指定parent，则需要delete。（指定parent后，可能会影响对某些事件的捕获。因为事件被父窗口捕获后，不会传递到子窗口，导致不会响应）
