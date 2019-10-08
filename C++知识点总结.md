@@ -466,6 +466,8 @@ private:
 <br>[类型推导与右值引用](https://www.bbsmax.com/A/GBJrVLjBJ0/)
 <br>[C++11 多线程之传递package_tast讨论](https://blog.csdn.net/t114211200/article/details/78073286)
 <br>以上模板与泛型编程用到的比较多
+
+<br>**腾讯rpc框架** [Tars框架Future/Promise使用](http://ju.outofmemory.cn/entry/342264)
 # c++11 模板函数
 <br>TA int/string(char*) TD int/string(char*)
 //template<typename TA=int, typename TD=int>
@@ -641,6 +643,9 @@ ftp断点续传功能
 
 # 一些信息
 <br>[写博客的收获和总结](https://juejin.im/post/5c02b2bce51d4533253f2f43)   此前六大设计原则也是该作者写的
+
+# 开源库
+<br>[腾讯Tars开源RPC框架](https://www.liangzl.com/get-article-detail-18305.html)
 
 # 面试
 <br>[C++后台开发面试](https://blog.csdn.net/jiange_zh/article/category/9265333)
