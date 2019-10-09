@@ -285,6 +285,10 @@ tt_data_vec GetChildVectorBy(tt_data_vec src_data, int a)
 6. c++11 的lamada表达式
 [C++11 Lambda表达汇总总结](https://www.cnblogs.com/smiler/p/4095723.html)
 
+7. c++11中的hash容器/数据结构  unordered_set/unordered_map  
+<br>[map与unordered_map的区别](https://www.cnblogs.com/strawqqhat/p/10602515.html)
+<br>[哈希表和红黑树的对比](https://blog.csdn.net/zkangaroo/article/details/70151688)
+
 # C++可变参数
 1. 可变参数宏va_start/va_arg/va_end
 ```
