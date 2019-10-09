@@ -255,3 +255,5 @@ void EDCDemo::on_update_msg(const QString& msg)
 ```
 connect(ui.cb_City, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, [=](int index){});
 ```
+3.qt5发布版本时报错 This application failed to start because it could not find or load the Qt platform plugin “windows”
+<br>[解决方法](https://www.cnblogs.com/naive/p/3568887.html)   [问题解决](https://blog.csdn.net/liyuefeilong/article/details/44109403)
