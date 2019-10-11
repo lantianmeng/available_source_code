@@ -541,7 +541,7 @@ ftp断点续传功能
 
 # C++ UI
 <br>[C++ ui控件自绘](https://www.cnblogs.com/hrhguanli/p/4470716.html)
-<br>**SOUI控件自绘开源库**
+<br>**SOUI控件自绘开源库**   [soui demo以及其他的一些界面demo](https://github.com/soui-demo)
 
 # C++后台服务
 搜索“web后台服务 cgi”
