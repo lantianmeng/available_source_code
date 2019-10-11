@@ -1,5 +1,5 @@
 <br>[qt知识图谱](https://blog.csdn.net/kyl282889543/article/details/86759561)
-<br>[轻松图标搜索](http://www.easyicon.net/)   这里可以获取到一些图片资源
+<br>[轻松图标搜索](http://www.easyicon.net/)   这里可以获取到一些图片资源（png），不用注册登陆即可直接下载
 # 知识点
 1. 添加信号/槽的两种方法
 - 使用qt默认的命名方式  on_接收对象名称_事件  ，如on_btnOk_clicked()
