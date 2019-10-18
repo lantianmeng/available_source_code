@@ -238,6 +238,8 @@ void EDCDemo::on_update_msg(const QString& msg)
 - 理解QObject管理父子关系 ** 主要是上述连接**
   <br>如果没有指定parent，则需要delete。（指定parent后，可能会影响对某些事件的捕获。因为事件被父窗口捕获后，不会传递到子窗口，导致不会响应）
   <br>窗口的父子关系理顺，才能考虑是使用传入parent，还是设置Qt::WA_DeleteOnClose属性
+# QSS
+<br>[Qt之QSS](https://blog.csdn.net/liang19890820/article/details/51992137)
 # 问题点
 1. 槽函数不响应
 - VS的工程中添加class，继承Qt类。默认没有Q_OBJECT宏。也就无法使用signals。
