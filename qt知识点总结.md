@@ -257,3 +257,6 @@ connect(ui.cb_City, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentInd
 ```
 3.qt5发布版本时报错 This application failed to start because it could not find or load the Qt platform plugin “windows”
 <br>[解决方法](https://www.cnblogs.com/naive/p/3568887.html)   [问题解决](https://blog.csdn.net/liyuefeilong/article/details/44109403)
+4.使用QIcon，图标不显示
+<br>[解决QIcon图标不显示的问题](https://www.cnblogs.com/yang12318/p/10699460.html)
+<br>[qt加载qrc文件](https://www.cnblogs.com/yang12318/p/10699429.html)
