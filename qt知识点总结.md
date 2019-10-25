@@ -159,7 +159,21 @@ void EDCDemo::on_update_msg(const QString& msg)
 ```
 - 对于Model/view类型的容器，可以使用QAbstractItemModel::dataChanged() 信号，用来更新界面数据（刷新界面）
 <br>这一块需要进一步学习
+```
+提示一下，最后完美解决这个问题，不再使用
+beginResetModel(); // model 内置函数，这句是最关键的
+endResetModel();
 
+而是使用
+void TableModel::updateData(int i)
+{
+    if (i<0) return;
+    // 根据指定行列，得到index
+    QModelIndex t1 = index(i, 3);
+    QModelIndex t2 = index(i, 5);
+    emit dataChanged(t1, t2); // view good 最关键的刷新数据，不会取消所选项
+}
+```
 3. 布局管理器
 <br>[使用qt designer进行布局](https://blog.csdn.net/jxwzh/article/details/81673223)，自己建一个工程，尝试一个各种布局
 <br>使用布局后，就是一个整体来移动和改变大小。如果要单独改变某个控件的大小，需要先break layout(qt designer工具栏/快捷键 ctrl+0)
