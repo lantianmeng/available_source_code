@@ -169,6 +169,10 @@ public:
 [C++ - 算法(algorithm) 的 谓词(predicate) 详解](https://blog.csdn.net/caroline_wendy/article/details/15378055)
 <br>这里列举的例子，以及后面vector中使用标准库算法，谓词（predicate）都是使用的lamada表达式，也可以使用上文中的描述的其他方法
 
+- C++ stl中的仿函数 
+<br>[C++ STL（第二篇：仿函数）](https://blog.csdn.net/weixin_39640298/article/details/88750451)
+<br>这里的一些概念需要理解：仿函数比函数指针好的原因，一元仿函数和二元仿函数（有些算法需要，故二者可能需要转换 bind1nd/bind2nd）
+
 4. 类型别名using与typedef
 - STL中的容器使用类型别名以及迭代器别名
 ```
