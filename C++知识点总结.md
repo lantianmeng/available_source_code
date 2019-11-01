@@ -172,6 +172,8 @@ public:
 - C++ stl中的仿函数 
 <br>[C++ STL（第二篇：仿函数）](https://blog.csdn.net/weixin_39640298/article/details/88750451)
 <br>这里的一些概念需要理解：仿函数比函数指针好的原因，一元仿函数和二元仿函数（有些算法需要，故二者可能需要转换 bind1nd/bind2nd）
+<br>[STL之仿函数实现详解](https://blog.csdn.net/u010710458/article/details/79734558)
+<br>这里是stl自带的仿函数，也可以自定义仿函数
 
 4. 类型别名using与typedef
 - STL中的容器使用类型别名以及迭代器别名
