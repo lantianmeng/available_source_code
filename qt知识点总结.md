@@ -257,6 +257,10 @@ void TableModel::updateData(int i)
   <br>窗口的父子关系理顺，才能考虑是使用传入parent，还是设置Qt::WA_DeleteOnClose属性
 # QSS
 <br>[Qt之QSS](https://blog.csdn.net/liang19890820/article/details/51992137)
+
+# Qt开源控件库
+<br>[使用C++ Qt5封装的一些控件](https://github.com/kevinlq/LQFramKit)
+
 # 问题点
 1. 槽函数不响应
 - VS的工程中添加class，继承Qt类。默认没有Q_OBJECT宏。也就无法使用signals。
