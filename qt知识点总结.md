@@ -260,6 +260,7 @@ void TableModel::updateData(int i)
 
 # Qt开源控件库
 <br>[使用C++ Qt5封装的一些控件](https://github.com/kevinlq/LQFramKit)
+<br>[QT学习Blog 图像处理软件qt与opencv](https://blog.csdn.net/u013165921/column/info/18269)
 
 # 问题点
 1. 槽函数不响应
