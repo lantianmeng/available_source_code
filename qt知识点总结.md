@@ -284,3 +284,10 @@ connect(ui.cb_City, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentInd
 4. 使用QIcon，图标不显示
 <br>[解决QIcon图标不显示的问题](https://www.cnblogs.com/yang12318/p/10699460.html)
 <br>[qt加载qrc文件](https://www.cnblogs.com/yang12318/p/10699429.html)
+
+# 项目中遇到问题并解决的一些记录
+<br>[qt Item绑定用户自定义数据常用方法](https://blog.csdn.net/ganggegel/article/details/77836792)
+<br>[使用qDebug()](https://blog.csdn.net/qq_42009634/article/details/83244666)
+<br>[QT 多个QDockWidget 切换显示](https://blog.csdn.net/technologyleader/article/details/95320064)
+<br>QPainter不能赋值拷贝，QPainterPath可以
+<br>只能在QWidget类中绘图，复杂形状可以使用drawPath FillPath
