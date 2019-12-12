@@ -294,3 +294,21 @@ connect(ui.cb_City, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentInd
 <br>[Qt中的JSON操作](https://blog.csdn.net/penghejuan2012/article/details/82895492)
 <br>[QregExp正则表达式, Qt里的正则表达式和C++里面的有些差别，例如\\.表示.   \\d表示d](https://blog.csdn.net/a_Treasure/article/details/80921689)
 <br>[Qt 判断文件或文件夹是否存在及创建文件夹](https://blog.csdn.net/lusirking/article/details/51644782)
+<br>[qt contextMenu](http://blog.sina.com.cn/s/blog_7a9ade2c0100vcd2.html)
+项目中采用了下述方法：
+```
+    //第一种方法 自定义context Menu
+	LabelList->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(LabelList, &QListWidget::customContextMenuRequested, this, &ImageProcessing::popLabelListMenu);
+	
+	void ImageProcessing::popLabelListMenu(QPoint pos)
+{
+	QMenu context_menu(this);
+	context_menu.addAction(act_edit_label);
+	context_menu.addAction(act_delete_ploygon);
+	context_menu.exec(LabelList->mapToGlobal(pos));
+}
+
+//第二种方法， 重写contextMenuEvent
+
+```	
