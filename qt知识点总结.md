@@ -312,3 +312,11 @@ connect(ui.cb_City, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentInd
 //第二种方法， 重写contextMenuEvent
 
 ```	
+//////////////////////
+<br>[QString std::string 相互转 含中文](https://www.cnblogs.com/herd/p/11040374.html)
+<br>[QLayout删除所有布局](https://www.cnblogs.com/qtgameprograming/p/10111987.html)	
+<br>[QT 判断鼠标是否在某个控件上](https://blog.csdn.net/xiezhongyuan07/article/details/80675483)
+<br>[Qt-Qlabel 自定义鼠标点击事件以及文本样式效果设计](https://blog.csdn.net/kohaku/article/details/24551287)
+<br>[QPushButton/QLabel在鼠标悬浮（划过， hover）、选中（单击， pressed）状态下更换图标样式](https://blog.csdn.net/weixin_43742643/article/details/100176681)
+<br>[qss 文件的使用和ID选择器](https://blog.csdn.net/fxbjye/article/details/76381570)
+<br>[QLabel显示边框](https://blog.csdn.net/yueqiang525/article/details/51214091)
