@@ -1,5 +1,9 @@
 <br>[qt知识图谱](https://blog.csdn.net/kyl282889543/article/details/86759561)
 <br>[轻松图标搜索](http://www.easyicon.net/)   这里可以获取到一些图片资源（png），不用注册登陆即可直接下载
+
+# qt开源控件库
+<br>[QT各种控件及图表](https://blog.csdn.net/ZhangXiaoyu_sy/article/details/78925221)
+
 # 知识点
 1. 添加信号/槽的两种方法
 - 使用qt默认的命名方式  on_接收对象名称_事件  ，如on_btnOk_clicked()
@@ -293,6 +297,11 @@ connect(ui.cb_City, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentInd
 <br>只能在QWidget类中绘图，复杂形状可以使用drawPath FillPath
 <br>[Qt中的JSON操作](https://blog.csdn.net/penghejuan2012/article/details/82895492)
 <br>[QregExp正则表达式, Qt里的正则表达式和C++里面的有些差别，例如\\.表示.   \\d表示d](https://blog.csdn.net/a_Treasure/article/details/80921689)
+```
+QString image_name; //各种图片名(.jpg/.png/.bmp/.tif)
+//图片名替换为同名的json文件
+QString json_name = image_name.replace(QRegExp("[^\\.]\\w*$"), "json");
+```
 <br>[Qt 判断文件或文件夹是否存在及创建文件夹](https://blog.csdn.net/lusirking/article/details/51644782)
 <br>[qt contextMenu](http://blog.sina.com.cn/s/blog_7a9ade2c0100vcd2.html)
 项目中采用了下述方法：
