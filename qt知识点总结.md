@@ -296,6 +296,8 @@ connect(ui.cb_City, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentInd
 <br>QPainter不能赋值拷贝，QPainterPath可以
 <br>只能在QWidget类中绘图，复杂形状可以使用drawPath FillPath
 <br>[Qt中的JSON操作](https://blog.csdn.net/penghejuan2012/article/details/82895492)
+<br>[QJson-趟过的各种坑(先坑后用法)](https://blog.csdn.net/Carry_Qt/article/details/88867537)
+<br>[Qt之JSON生成与解析](https://blog.csdn.net/foxgod/article/details/90407960)
 <br>[QregExp正则表达式, Qt里的正则表达式和C++里面的有些差别，例如\\.表示.   \\d表示d](https://blog.csdn.net/a_Treasure/article/details/80921689)
 ```
 QString image_name; //各种图片名(.jpg/.png/.bmp/.tif)
