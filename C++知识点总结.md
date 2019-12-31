@@ -174,7 +174,9 @@ public:
 <br>这里的一些概念需要理解：仿函数比函数指针好的原因，一元仿函数和二元仿函数（有些算法需要，故二者可能需要转换 bind1nd/bind2nd）
 <br>[STL之仿函数实现详解](https://blog.csdn.net/u010710458/article/details/79734558)
 <br>这里是stl自带的仿函数，也可以自定义仿函数
-
+```
+//代码例子，可以参考 5 求vector中最大元素
+```
 4. 类型别名using与typedef
 - STL中的容器使用类型别名以及迭代器别名
 ```
@@ -287,7 +289,73 @@ tt_data_vec GetChildVectorBy(tt_data_vec src_data, int a)
 }
 
 ```
+- 判断vector是否相等，以及求vector中元素的最大值（仿函数的应用）
+<br>[判断两个vector是否相等](https://www.xuebuyuan.com/540427.html)
+```
+class shapeData
+{
+public:
+       using PointsType = std::vector<QPoint>;
+       bool operator==(shapeData shape_unit)const { return index == shape_unit.getIndex() && points == shape_unit.getPoints(); }
+       
+       	//所有shape的最大index值
+	int getMaxIndex();
+private:
+	int index;
+	PointsType points;
+};
 
+//shape类的比较函数(仿函数)
+struct shape_comp
+{
+    bool operator()(const shapeData &s1, const shapeData &s2)
+    {
+    	return (s1.getIndex() < s2.getIndex());
+    }
+};
+
+int PaintWidget::getMaxIndex()
+{
+	int ret = -1;
+
+	ShapeDataType::iterator iter = max_element(all_shapes.begin(), all_shapes.end(), shape_comp());
+	if (iter != all_shapes.end())
+	{
+		ret = iter->getIndex();
+	}
+
+	return ret;
+}
+
+class PaintWidget
+{
+public:
+        using ShapeDataType = std::vector<shapeData>;
+	bool IsDataChanged();
+private:
+        ShapeDataType all_shapes;
+};
+
+bool PaintWidget::IsDataChanged()
+{
+	bool ret = false;
+	QString json_name;
+	if (I_MainWindow->IsExistLabelData(json_name)) //判断与当前图片同名的json文件是否存在
+	{
+		//解析json文件
+		PaintWidget::ShapeDataType shapes;
+		read_json(json_name, shapes);
+		if (shapes != all_shapes) //两个vector直接比较，需要重载==
+			ret = true;
+	}
+	else
+	{
+		if (all_shapes.size() > 0)
+			ret = true;
+	}
+	return ret;
+}
+```
 6. c++11 的lamada表达式
 [C++11 Lambda表达汇总总结](https://www.cnblogs.com/smiler/p/4095723.html)
 
