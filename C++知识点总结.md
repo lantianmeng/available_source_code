@@ -298,8 +298,6 @@ public:
        using PointsType = std::vector<QPoint>;
        bool operator==(shapeData shape_unit)const { return index == shape_unit.getIndex() && points == shape_unit.getPoints(); }
        
-       	//所有shape的最大index值
-	int getMaxIndex();
 private:
 	int index;
 	PointsType points;
@@ -314,24 +312,14 @@ struct shape_comp
     }
 };
 
-int PaintWidget::getMaxIndex()
-{
-	int ret = -1;
-
-	ShapeDataType::iterator iter = max_element(all_shapes.begin(), all_shapes.end(), shape_comp());
-	if (iter != all_shapes.end())
-	{
-		ret = iter->getIndex();
-	}
-
-	return ret;
-}
-
 class PaintWidget
 {
 public:
         using ShapeDataType = std::vector<shapeData>;
 	bool IsDataChanged();
+
+        //所有shape的最大index值
+	int getMaxIndex();
 private:
         ShapeDataType all_shapes;
 };
@@ -355,6 +343,20 @@ bool PaintWidget::IsDataChanged()
 	}
 	return ret;
 }
+
+int PaintWidget::getMaxIndex()
+{
+	int ret = -1;
+
+	ShapeDataType::iterator iter = max_element(all_shapes.begin(), all_shapes.end(), shape_comp());
+	if (iter != all_shapes.end())
+	{
+		ret = iter->getIndex();
+	}
+
+	return ret;
+}
+
 ```
 6. c++11 的lamada表达式
 [C++11 Lambda表达汇总总结](https://www.cnblogs.com/smiler/p/4095723.html)
