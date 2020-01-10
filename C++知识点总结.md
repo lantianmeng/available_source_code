@@ -713,6 +713,17 @@ ftp断点续传功能
   分叉与汇合
   <br>[活动图实例](https://www.cnblogs.com/xiaolongbao-lzh/p/4591953.html) 前面部分与上一帖有重复，后面的几个例子是很有借鉴价值的
 
+# C++ 访问数据库
+<br>[C++连接主流数据库经验总结](https://blog.csdn.net/GIS_yuhua/article/details/100027392)
+
+<br>[C++类库：OTL通用的数据库连接类库](http://www.cppblog.com/lovefeel2004/archive/2010/06/02/116946.aspx)
+<br>[一个C++11实现的轻量级数据库访问库，支持MySQL和SQLite ](https://www.ctolib.com/topics-107358.html)
+
+<br>[C++数据库访问类库SOCI、LiteSQL、POCO对比](https://blog.csdn.net/csdndenglu/article/details/90441230)
+这里推荐的是poco
+
+ *sqlapi++ 收费库，soci轻量级，liteSQL是自动生成代码，比较重。。poco除了数据库功能之外，还有包含了很多其他的库，是一个开发框架*
+
 # 架构设计相关
 1. 一些DDD和应用架构的基础知识
 <br>[阿里高级技术专家方法论：如何写复杂业务代码？](https://mp.weixin.qq.com/s/pdjlf9I73sXDr30t-5KewA)
