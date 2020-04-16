@@ -47,6 +47,7 @@ int main(int argc, char *argv[])
 
 # 基础知识点
 <br>[C++指针和引用](https://www.cnblogs.com/tangxiaobo199181/p/7989464.html) ***评论区的一些解释，也要注意***
+<br>[C++ const关键字](https://www.runoob.com/w3cnote/cpp-const-keyword.html)
 <br>[C/C++中的static关键字](https://blog.csdn.net/weixin_40311211/article/details/82851300)
 ```
 //限定全局变量g_s只在当前文件可见（在test.cpp中使用g_s，编译报错）
