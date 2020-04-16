@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
 <br>[VS自带工具：dumpbin的使用查看Lib,dll等](https://blog.csdn.net/sinat_29890433/article/details/79556124)
 
 # 基础知识点
+<br>[C/C++中的static关键字](https://blog.csdn.net/weixin_40311211/article/details/82851300)
 1. c++ 两个类需要互相引用，导致头文件互相包含
   - 某一个类的头文件中对引用的类定义指针，然后对引用的类进行声明；cpp文件中包含引用类的路径
   ```
