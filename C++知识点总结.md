@@ -47,6 +47,44 @@ int main(int argc, char *argv[])
 
 # 基础知识点
 <br>[C/C++中的static关键字](https://blog.csdn.net/weixin_40311211/article/details/82851300)
+```
+//限定全局变量g_s只在当前文件可见（在test.cpp中使用g_s，编译报错）
+static int g_s = 10;
+
+//普通的全局变量的作用域也是在当前文件有效，但可以通过extern来扩展全局变量的作用域
+int g_s = 10;
+
+//静态局部变量
+int foo()
+{
+	//i只初始化一次，且foo函数执行完后不释放
+	static int i = 2;
+	i += 1;
+	return i;
+}
+
+//类的静态成员变量和静态成员函数
+//静态成员变量:类的所有对象共享，存储在静态存储区而不是类对象所分配的内存区
+//             初始化:  不是通过类的构造函数int A::m_a = 0;
+
+//静态成员函数：访问私有的静态成员变量（不能访问普通成员）
+//             普通成员函数可以直接调用静态成员函数和静态
+class A
+{
+public:
+	A():m_b(0) {}
+	A(int b):m_b(b)  {}
+	~A() {}
+	
+	static int get_a() { return m_a; }
+	int get_plus() { return m_a + m_b; }
+private:
+	static int m_a;
+	int m_b;
+};
+
+int A::m_a = 0;
+```
 1. c++ 两个类需要互相引用，导致头文件互相包含
   - 某一个类的头文件中对引用的类定义指针，然后对引用的类进行声明；cpp文件中包含引用类的路径
   ```
