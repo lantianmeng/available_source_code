@@ -121,7 +121,47 @@ public:
 
 2. 类型转换
 + 隐式类型转换
+<br>基本类型的隐式类型转换
+<br>类与基本类型的转换
+```
+class test_const
+{
+public:
+	test_const() :m_b(0) {}
 
+	//只有一个参数，且参数是基本类型，称为转换构造函数，即将基本类型转为类类型（隐式转）。
+	//为了避免这种隐式转换造成问题，可使用explicit
+	test_const(int b) :m_b(b) {}
+	~test_const() {}
+
+	//不改变数据成员的成员函数，其后面都应该加const
+	int get_b() const { return m_b; }
+
+	//将test_const类类型，转换为int型
+	operator int() { return m_b; }
+private:
+	int m_b;
+};
+
+void show(const test_const& tt)
+{
+	std::cout << tt.get_b() << std::endl;
+}
+
+int main()
+{
+	test_const at(53);
+	std::cout << at.get_b() << std::endl;
+
+	//类对象赋值给基本类型时，即转换
+	int test_convert = at;
+	//这里传入int类型，而show()函数发生了
+	show(test_convert);
+	system("pause");
+    return 0;
+}
+
+```
 + c++强制类型转换
 - static_cast  编译时期的静态类型检测
 	- 完成基础数据类型
