@@ -29,5 +29,4 @@
 	tp1.join();
 	tp2.join();
 ```
-3. 线程池ThreadPool实现部分的解释
-[其中的语法解释](https://www.cnblogs.com/lzpong/p/6397997.html)
+3. [线程池ThreadPool实现部分的解释](https://www.cnblogs.com/lzpong/p/6397997.html)
