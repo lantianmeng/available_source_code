@@ -259,6 +259,14 @@ void TableModel::updateData(int i)
 - 理解QObject管理父子关系 ** 主要是上述连接**
   <br>如果没有指定parent，则需要delete。（指定parent后，可能会影响对某些事件的捕获。因为事件被父窗口捕获后，不会传递到子窗口，导致不会响应）
   <br>窗口的父子关系理顺，才能考虑是使用传入parent，还是设置Qt::WA_DeleteOnClose属性
+  
+5. Qt Designer设计的ui文件，手动生成.h文件、.cpp文件和 moc文件
+<br>[如何将Qt Designer 产生的*.UI文件转换成QT可以使用的*.H和*.CPP](https://blog.csdn.net/liujd7788/article/details/6324669?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~sobaiduend~default-2-6324669.nonecase&utm_term=%E5%B0%86ui%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90h%E5%92%8Ccpp%E6%96%87%E4%BB%B6)
+<br>[手动生成moc文件](https://www.cnblogs.com/cLockey/p/4238374.html)
+
+6. qt更新数据到界面
+<br>[Qt编程中实现数据驱动界面更新](https://www.jianshu.com/p/4910d8422b72)
+
 # QSS
 <br>[Qt之QSS](https://blog.csdn.net/liang19890820/article/details/51992137)
 
