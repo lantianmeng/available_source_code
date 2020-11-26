@@ -333,8 +333,46 @@ flag_data_all::FlagDataIterator flag_data_all::GetDataUnit(int flag)
         }
    }
 ```
+- map遍历时删除的方法
+```
+        typedef std::map<SSessionId, boost::shared_ptr<CSessionData>>  SessionDataType;
+	    SessionDataType m_sessionData;
+		
+		SessionDataType::iterator iter = m_sessionData.begin();
+		while (iter != m_sessionData.end())
+		{
+			uint64_t currentTimestamp = CStreamMgr::GetCurrentStamp64();
+			if (iter->second->getPlayCount() == 0 && (currentTimestamp - iter->second->getTimestamp()) >= m_noPlayInterval)
+			{
+				//正常停止流
+				m_streamMgr->stopStream(iter->second);
+				m_sessionData.erase(iter++);
+				continue;
+			}
+			iter++;
+		}
 
-- list中
+```
+
+- list中遍历时删除的另一种方法(通过front/pop_front)
+```
+        //对于缓存list，线程中使用时，加锁swap交换数据给临时list后，释放锁；然后接着处理缓存中的数据
+        std::list< SPIStreamSession > tmpList;
+        {
+            boost::mutex::scoped_lock lock( m_mutexExcept );
+            tmpList.swap( m_exceptSessins );
+        }
+
+        while( !tmpList.empty() ) // m_bRun为FALSE也要做完spSession->fini()，因为m_exceptSessins已经swap出来了
+        {
+            const SPIStreamSession& spSession = tmpList.front();
+            if ( spSession )
+            {
+                spSession->fini();
+            }
+            tmpList.pop_front();
+        }
+```
 - vector，获取某个元素对应的迭代器，对应的下标
 <br>[vector 迭代器，返回下标的方法](https://blog.csdn.net/meanong/article/details/80179680)
 
@@ -651,6 +689,89 @@ private:
 <br>以上模板与泛型编程用到的比较多
 
 <br>**腾讯rpc框架** [Tars框架Future/Promise使用](http://ju.outofmemory.cn/entry/342264)
+
+2. 多线程以及同步 
+<br>关于互斥锁，有以下两种使用方法
+ - 大锁， 锁整个缓存
+ ```
+    //定时器函数，锁m_lockSessionData将整个map缓存（m_sessionData）锁住
+ 	bool CSessionMgr::timerCallback()
+	{
+		if (!m_streamMgr) return false;
+
+		boost::mutex::scoped_lock lock(m_lockSessionData);
+		SessionDataType::iterator iter = m_sessionData.begin();
+		while (iter != m_sessionData.end())
+		{
+			uint64_t currentTimestamp = CStreamMgr::GetCurrentStamp64();
+			if (iter->second->getPlayCount() == 0 && (currentTimestamp - iter->second->getTimestamp()) >= m_noPlayInterval)
+			{
+				//正常停止流
+				m_streamMgr->stopStream(iter->second);
+				m_sessionData.erase(iter++);
+				continue;
+			}
+			iter++;
+		}
+
+		return true;
+	}
+
+
+ ```
+ 
+ - 短暂锁，获取缓存数据（swap）后，锁释放。然后继续处理缓存数据
+ ```
+ 
+ //线程函数，加锁后将缓存中的数据复制给临时对象（块作用域，短暂锁住缓存m_sessions（map）/m_exceptSessins(list)）
+ void CStreamMgr::exceptionThread()
+{
+    while( m_bRun )
+    {
+        SPIStreamSessionContainer tmpContainer;
+        {
+            boost::mutex::scoped_lock lock( m_mutex );
+            tmpContainer = m_sessions;
+        }
+        uint64_t nowTime = time( NULL );
+        nth_index_iterator<SPIStreamSessionContainer, 0>::type it = get<0>(tmpContainer).begin(), ite = get<0>(tmpContainer).end();
+        for ( ; it != ite; ++it )
+        {
+            if ( !m_bRun )
+                break;
+            if ( *it )
+            {
+                (*it)->checkTimeOut( nowTime );
+            }
+        }
+        if ( !m_bRun )
+            break;
+
+        std::list< SPIStreamSession > tmpList;
+        {
+            boost::mutex::scoped_lock lock( m_mutexExcept );
+            tmpList.swap( m_exceptSessins );
+        }
+
+        while( !tmpList.empty() ) // m_bRun为FALSE也要做完spSession->fini()，因为m_exceptSessins已经swap出来了
+        {
+            const SPIStreamSession& spSession = tmpList.front();
+            if ( spSession )
+            {
+                spSession->fini();
+            }
+            tmpList.pop_front();
+        }
+        if ( m_bRun )
+        {
+            boost::mutex::scoped_lock lock( m_mutexExcept );
+            m_cond.timed_wait( lock, boost::posix_time::seconds( TIMER_INTERVAL ) );
+        }
+    }
+}
+
+ ```
+ 
 # c++11 模板函数
 <br>TA int/string(char*) TD int/string(char*)
 //template<typename TA=int, typename TD=int>
