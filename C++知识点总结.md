@@ -334,6 +334,7 @@ flag_data_all::FlagDataIterator flag_data_all::GetDataUnit(int flag)
    }
 ```
 
+- list中
 - vector，获取某个元素对应的迭代器，对应的下标
 <br>[vector 迭代器，返回下标的方法](https://blog.csdn.net/meanong/article/details/80179680)
 
