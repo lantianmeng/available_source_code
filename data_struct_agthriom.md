@@ -1,3 +1,55 @@
+# 数据结构与算法
+- 为什么要学习why？
+<br>[工作后，为什么还要学习数据结构与算法](https://www.jianshu.com/p/1a63970ab025)
+- 如何学习how？
+<br>[我是如何学习数据结构与算法的](https://www.cnblogs.com/kubidemanong/archive/2018/10/05/9746328.html)
+<br>我也在学习数据结构与算法，先是过一遍概念，大致地了解一下，然后开始刷题，刷题的时候知道需要哪些知识点再着重学习。
+<br>这个非常注重实践，牛客网和leetcode是刷题的好去处。
+<br>[知乎 如何学习数据结构与算法](https://www.zhihu.com/question/21318658)
+- 有何用途
+<br>[数据结构与算法的一些应用](https://www.cnblogs.com/chenweichu/articles/5703046.html)
+
+# 排序
+- 冒泡排序
+```
+void bubble_sort(int *pArray, int nSize)
+{
+     for(int i = 0; i < nSize - 1; i++) //一次循环将最大数沉底，进行nSize-1次沉底，就可以让数组由小到大排序
+     {
+          for(int j = 0; j < nSize - 1 - i; j++) //进行一次沉底操作，需要与其他数比较
+          {
+               if(pArray[j] > pArray[j+1])
+               {
+                    int temp = pArray[j];
+                    pArray[j] = pArray[j+1];
+                    pArray[j+1] = temp;
+               }
+          }
+     }
+}
+```
+- 选择排序
+```
+void select_sort(int *pArray, int nSize)
+{
+     for(int i = 0; i < nSize; i++)
+     {
+          int min = i;  //min标记最小数的下标
+          for(int j = i + 1; j < nSize; j++)//从i+1开始，查找比pArray[min]小的数
+          {
+               if(pArray[j] < pArray[min])
+               {
+                    min = j;
+               }
+          }
+         
+          int temp = pArray[i];   //pArray[i] 与 pArray[min]交换，即pArray[i]中存放最小数
+          pArray[i] = pArray[min];
+          pArray[min] = temp;
+     }
+}
+```
+
 # 字符串
 1. 朴素的模式匹配算法
 ```
