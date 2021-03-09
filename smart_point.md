@@ -109,7 +109,9 @@ auto_ptr<int> p1(p); //p1析构时，只会删除第一个元素，造成内存�
     <br>有些情况，A类只是需要引用B类，B类对象的创建不在A类，B类也不管理A类对象的释放，此种情况weak_ptr就应运而生了
 	<br>使用shared_ptr赋值给weak_ptr，不会增加强引用计数（strong count），取而代之的是增加一个弱引用计数(weak count)，弱引用计数不会影响指针的生命周期
 
-<br>[shared_ptr的线程安全性](https://www.cnblogs.com/gqtcgq/p/7492772.html)   **面试被问到这个问题**
+- shared_ptr的引用计数是否是线程安全的
+<br>同一个shared_ptr被多个线程“读”是安全的。同一个shared_ptr被多个线程“写”是不安全的。
+<br>[shared_ptr的yin线程安全性](https://www.cnblogs.com/gqtcgq/p/7492772.html)   **面试被问到这个问题**
 
 4. weak_ptr
 <br>weak_ptr是为了配合shared_ptr而引入的一种智能指针，它指向一个由shared_ptr管理的对象而不影响所指对象的生命周期，也就是将一个weak_ptr绑定到一个shared_ptr不会改变shared_ptr的引用计数。
