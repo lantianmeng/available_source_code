@@ -2,9 +2,13 @@
 #define PIZZA_STORE_H
 
 #include <string>
+#include <memory>
 
 class Pizza;
 class Pizza1;
+class AbstractFactory;
+class PizzaFactory;
+class PizzaSimpleFactory;
 
 //创造者 
 class PizzaStore
@@ -19,27 +23,18 @@ public:
 	};
 
 	PizzaStore(PizzaStore::CreatedType pizza_created_type_);
-	Pizza * OrderPizza(const std::string & type);
+	//0: A口味
+	//1：B口味
+	Pizza * OrderPizza(const std::string & type, int flag = 0);
+protected:
+	Pizza * Create(const std::string & type);
+	Pizza * Create();
 protected:
 	CreatedType pizza_created_type;
-private:
-	virtual Pizza* Create(const std::string & type);
-};
 
-class NyStore:public PizzaStore
-{
-public:
-	NyStore(CreatedType pizza_created_type_);
-private:
-	virtual Pizza* Create(const std::string & type);
-};
-
-class ChStore :public PizzaStore
-{
-public:
-	ChStore(CreatedType pizza_created_type_);
-private:
-	virtual Pizza* Create(const std::string & type);
+	std::shared_ptr<PizzaSimpleFactory> ff;
+	std::shared_ptr<PizzaFactory>  pf;
+	std::shared_ptr<AbstractFactory> af;
 };
 
 #endif

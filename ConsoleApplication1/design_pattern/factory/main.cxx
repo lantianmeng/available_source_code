@@ -55,41 +55,26 @@ int _tmain(int argc, _TCHAR* argv[])
 	assert(my_pizza.get() != nullptr);
 	my_pizza->print();
 
+	//工厂模式 这里写的有点问题 
+	//此模式下，一个工厂生产一种产品
 	std::cout << "---------- factory----------" << std::endl;
-	std::shared_ptr<PizzaStore>  ss1(new NyStore(PizzaStore::CreatedType::FACTORY));
-	my_pizza.reset(ss1->OrderPizza("Beijing"));
+	PizzaStore ss1(PizzaStore::CreatedType::FACTORY);
+	my_pizza.reset(ss1.OrderPizza("Beijing"));
 	assert(my_pizza.get() != nullptr);
 	my_pizza->print();
 
-	my_pizza.reset(ss1->OrderPizza("Cheese"));
+	my_pizza.reset(ss1.OrderPizza("Cheese"));
 	assert(my_pizza.get() != nullptr);
 	my_pizza->print();
 
-	ss1.reset(new ChStore(PizzaStore::CreatedType::FACTORY));
-	my_pizza.reset(ss1->OrderPizza("Beijing"));
-	assert(my_pizza.get() != nullptr);
-	my_pizza->print();
-
-	my_pizza.reset(ss1->OrderPizza("Cheese"));
-	assert(my_pizza.get() != nullptr);
-	my_pizza->print();
-
+	//抽象工厂模式
 	std::cout << "----------abstract factory----------" << std::endl;
-	ss1.reset(new NyStore(PizzaStore::CreatedType::ABSTACT_FACTORY));
-	my_pizza.reset(ss1->OrderPizza("Beijing"));
+	PizzaStore ss2(PizzaStore::CreatedType::ABSTACT_FACTORY);
+	my_pizza.reset(ss2.OrderPizza("Beijing")); //默认是A口味
 	assert(my_pizza.get() != nullptr);
 	my_pizza->print();
 
-	my_pizza.reset(ss1->OrderPizza("Cheese"));
-	assert(my_pizza.get() != nullptr);
-	my_pizza->print();
-
-	ss1.reset(new ChStore(PizzaStore::CreatedType::ABSTACT_FACTORY));
-	my_pizza.reset(ss1->OrderPizza("Beijing"));
-	assert(my_pizza.get() != nullptr);
-	my_pizza->print();
-
-	my_pizza.reset(ss1->OrderPizza("Cheese"));
+	my_pizza.reset(ss2.OrderPizza("Cheese", 1)); //B 口味的Cheese
 	assert(my_pizza.get() != nullptr);
 	my_pizza->print();
 

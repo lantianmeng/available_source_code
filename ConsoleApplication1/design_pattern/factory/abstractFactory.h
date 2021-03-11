@@ -1,43 +1,48 @@
 #ifndef ABSTRACT_FACTORY_H
 #define ABSTRACT_FACTORY_H
 
-class ZuoLiao
+#include "pizza1.h"
+#include <memory>
+
+class AbstractFactory
 {
 public:
-	ZuoLiao(std::string zl_) :zl(zl_){}
-	std::string Get() { return zl; }
-private:
-	std::string zl;
+	virtual CheesePizza* CreateCheesePizza() = 0;
+	virtual BeijingPizza* CreateBeijingPizza() = 0;
 };
 
-class MianFen
+class AFactory :public AbstractFactory
 {
 public:
-	MianFen(std::string mf_) :mf(mf_){}
-	std::string Get() { return mf; }
-private:
-	std::string mf;
-};;
-
-class TiaoLiaoAbstactFactory
-{
-public:
-	virtual ZuoLiao* CreateZuoLiao() { return nullptr; }
-	virtual MianFen* CreateMianFen() { return nullptr; }
+	virtual CheesePizza* CreateCheesePizza()
+	{ 
+		CheesePizza* cc = new CheesePizza(3.1, "Cheese", "a abstract cheese");
+		cc->SetTiaoLiao("AZuoLiao", "AMianFen");
+		return cc;
+	}
+	virtual BeijingPizza* CreateBeijingPizza()
+	{
+		BeijingPizza* cc = new BeijingPizza(3.2, "Beijing", "a abstract beijing");
+		cc->SetTiaoLiao("AZuoLiao", "AMianFen");
+		return cc;
+	}
 };
 
-class ATiaoLiaoFactory :public TiaoLiaoAbstactFactory
+class BFactory :public AbstractFactory
 {
 public:
-	virtual ZuoLiao* CreateZuoLiao() { return new ZuoLiao("AZuoLiao"); }
-	virtual MianFen* CreateMianFen(){ return new MianFen("AMianFen"); }
-};
-
-class BTiaoLiaoFactory :public TiaoLiaoAbstactFactory
-{
-public:
-	virtual ZuoLiao* CreateZuoLiao(){ return new ZuoLiao("BZuoLiao"); }
-	virtual MianFen* CreateMianFen(){ return new MianFen("BMianFen"); }
+	virtual CheesePizza* CreateCheesePizza()
+	{
+		CheesePizza* cc = new CheesePizza(3.8, "Cheese", "b abstract cheese");
+		cc->SetTiaoLiao("BZuoLiao", "BMianFen");
+		return cc;
+	}
+	virtual BeijingPizza* CreateBeijingPizza()
+	{
+		BeijingPizza* cc = new BeijingPizza(3.9, "Beijing", "b abstract beijing");
+		cc->SetTiaoLiao("BZuoLiao", "BMianFen");
+		return cc;
+	}
 };
 
 #endif

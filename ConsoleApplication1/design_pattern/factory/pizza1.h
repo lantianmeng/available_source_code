@@ -1,73 +1,31 @@
 #ifndef PIZZA1_H
 #define PIZZA1_H
 
-#include <iostream>
-#include "abstractFactory.h"
+#include "pizza.h"
 
-class Pizza1
+//有两种产品 CheesePizza和BeijingPizza
+//虽然在此demo里他们有一个共同的基类，但实际也可以是两种不相关的产品
+class CheesePizza_ATiaoLiao :public CheesePizza
 {
 public:
-	Pizza1(TiaoLiaoAbstactFactory *factory_) :factory(factory_), zl(nullptr), mf(nullptr)
-	{
 
-	}
-
-	virtual Pizza1* Create()
-	{
-		return this;
-	}
-
-	virtual ~Pizza1()
-	{
-		if (zl) delete zl; zl = nullptr;
-		if (mf) delete mf; mf = nullptr;
-	}
-
-	void print()
-	{
-		assert(zl != nullptr && mf != nullptr);
-		std::cout << zl->Get() << " " << mf->Get();
-	}
-protected:
-	TiaoLiaoAbstactFactory* factory;
-	ZuoLiao *zl;
-	MianFen *mf;
 };
 
-class NyStylePizza1 : public Pizza1
+class BeijingPizza_ATiaoLiao :public BeijingPizza
 {
 public:
-	NyStylePizza1(TiaoLiaoAbstactFactory *factory_) : Pizza1(factory_)
-	{
 
-	}
-
-	virtual Pizza1* Create()
-	{
-		zl = factory->CreateZuoLiao();
-		mf = factory->CreateMianFen();
-
-		return this;
-	}
 };
 
-class BeijingPizza1 : public Pizza1
+class CheesePizza_BTiaoLiao :public CheesePizza
 {
 public:
-	BeijingPizza1(TiaoLiaoAbstactFactory *factory_) : Pizza1(factory_)
-	{
-	}
 
-	virtual Pizza1* Create()
-	{
-		zl = factory->CreateZuoLiao();
-		mf = factory->CreateMianFen();
+};
 
-		return this;
-	}
+class BeijingPizza_BTiaoLiao :public BeijingPizza
+{
+public:
 
-	~BeijingPizza1()
-	{
-	}
 };
 #endif

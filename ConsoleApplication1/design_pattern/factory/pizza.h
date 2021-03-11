@@ -5,15 +5,31 @@
 #include <string>
 #include <cassert>
 
-#include "abstractFactory.h"
+class ZuoLiao
+{
+public:
+	ZuoLiao(std::string zl_) :zl(zl_){}
+	std::string Get() { return zl; }
+private:
+	std::string zl;
+};
+
+class MianFen
+{
+public:
+	MianFen(std::string mf_) :mf(mf_){}
+	std::string Get() { return mf; }
+private:
+	std::string mf;
+};
 
 class Pizza
 {
 public:
 	Pizza(double price_, std::string alias_);
-	Pizza(double price_, std::string alias_, TiaoLiaoAbstactFactory *factory_);
-	void SetFactory(TiaoLiaoAbstactFactory *factory_);
-	void PrepareTiaoLiao();
+
+	void SetTiaoLiao(const std::string &z, const std::string &m) { zl = new ZuoLiao(z); mf = new MianFen(m); }
+
 	virtual ~Pizza();
 	virtual void print();
 protected:
@@ -22,7 +38,6 @@ protected:
     double price;
 	std::string alias;
 
-	TiaoLiaoAbstactFactory* factory;
 	ZuoLiao *zl;
 	MianFen *mf;
 };
@@ -31,7 +46,7 @@ class CheesePizza :public Pizza
 {
 public:
 	CheesePizza(double price_, std::string alias_, std::string style_);
-	CheesePizza(double price_, std::string alias_, std::string style_, TiaoLiaoAbstactFactory *factory_);
+
 	virtual void print() override;
 	std::string &GetStyle();
 private:
@@ -42,7 +57,7 @@ class BeijingPizza :public Pizza
 {
 public:
 	BeijingPizza(double price_, std::string alias_, std::string created_method_);
-	BeijingPizza(double price_, std::string alias_, std::string created_method_, TiaoLiaoAbstactFactory *factory_);
+
 	virtual void print() override;
 	std::string &GetMethod();
 private:

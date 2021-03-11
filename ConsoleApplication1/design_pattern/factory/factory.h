@@ -24,17 +24,21 @@ public:
 
 class PizzaFactory
 {
-	virtual Pizza* Create();
+public:
+	virtual Pizza* Create() { return nullptr; }
 };
 
-class NyStylePizzaFactory:public PizzaFactory
+//NyFactory只生产CheesePizza
+class NyFactory :public PizzaFactory
 {
-	virtual Pizza* Create();
+public:
+	virtual Pizza* Create() { return new CheesePizza(1.4, "Ny Cheese", "Ny Cheese Style"); }
 };
 
-class BeijingPizzaFactory :public PizzaFactory
+//// ChFactory只生产BeijingPizza
+class ChFactory :public PizzaFactory
 {
-	virtual Pizza* Create();
+public:
+	virtual Pizza* Create() { return new BeijingPizza(1.2, "Ch Beijing", "Ch gugong Beijing"); }
 };
-
 #endif
