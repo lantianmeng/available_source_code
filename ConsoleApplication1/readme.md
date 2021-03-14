@@ -1,4 +1,7 @@
-1 cJson解析的测试代码UrlJsonParse.hpp
+# xml/json中含有特殊字符，怎么处理
+<br>特殊字符进行转义，**需要学代码进行测试**
+
+1. cJson解析的测试代码UrlJsonParse.hpp
 ```
 ////deviceAdd
 //char testJson[] = 
