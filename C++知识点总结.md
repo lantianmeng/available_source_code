@@ -267,6 +267,23 @@ int main()
 	}
 	
 ```
+- vector 替换/删除，应用标准库算法
+```
+std::vector<int>  varLabels；
+
+std::replace(std::begin(varLabels), std::end(varLabels), L_PHOTO, L_EXIT);
+```
+auto erased = std::erase(varLabels, 3);
+std::erase, std::erase_if (std::vector) - C++中文 - API参考文档 (apiref.com)
+
+这个需要支持C++20X标准的编译器
+另外一种方式：  std::remove, std::remove_if - C++中文 - API参考文档 (apiref.com)
+
+```
+varLabels.erase(std::remove(std::begin(varLabels), std::end(varLabels), 3), 
+
+varCurWidget.end());
+```
 - 标准库算法中的谓词(predicate)
 [C++ - 算法(algorithm) 的 谓词(predicate) 详解](https://blog.csdn.net/caroline_wendy/article/details/15378055)
 <br>这里列举的例子，以及后面vector中使用标准库算法，谓词（predicate）都是使用的lamada表达式，也可以使用上文中的描述的其他方法
