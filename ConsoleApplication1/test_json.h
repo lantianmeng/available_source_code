@@ -89,6 +89,21 @@ std::string write_json()
 	rapidjson::Value image_data(rapidjson::kNullType);
 	doc.AddMember("imageData", image_data, allocator);
 
+	//【RapidJson】Rapidjson string乱码
+        // https://blog.csdn.net/sinat_38602176/article/details/125412220
+	// AddMember 中的name是可变的字符串string时
+
+        rapidjson::Value IRGraLineCurPoint(rapidjson::kObjectType);
+        for(int i=0;i<12;i++ )
+        {
+            QString irStrX = QString("x%1Pos").arg(i);
+            QString irStrY = QString("y%1Pos").arg(i);
+            CurPoint tmpIRPoint = picParam.m_cpIRState.m_ptList[i];
+            IRGraLineCurPoint.AddMember(rapidjson::Value().SetString(irStrX.toStdString().c_str(), allocator).Move(), tmpIRPoint.x-640, allocator);
+            IRGraLineCurPoint.AddMember(rapidjson::Value().SetString(irStrY.toStdString().c_str(), allocator).Move(), tmpIRPoint.y-512, allocator);
+        }
+        doc.AddMember("IRGraLineCurPoint", IRGraLineCurPoint, allocator);
+	
 	//键值对
 	doc.AddMember("imageHeight", 512, allocator);
 	doc.AddMember("imageWidth", 512, allocator);
